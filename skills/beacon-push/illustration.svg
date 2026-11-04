@@ -1,0 +1,190 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="960" height="540" fill="#f8fafc"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="960" height="56" fill="#0f172a"/>
+  <text x="24" y="36" font-size="20" font-weight="700" fill="#f8fafc">Beacon push</text>
+  <text x="160" y="36" font-size="14" fill="#cbd5e1">send &amp; inspect push notifications across 7 transports</text>
+
+  <!-- Legend -->
+  <g transform="translate(720, 18)" font-size="11" fill="#cbd5e1">
+    <rect x="0" y="0" width="14" height="14" rx="3" fill="#1e40af"/>
+    <text x="20" y="11">agent</text>
+    <rect x="68" y="0" width="14" height="14" rx="3" fill="#0891b2"/>
+    <text x="88" y="11">beacon</text>
+    <rect x="148" y="0" width="14" height="14" rx="3" fill="#f59e0b"/>
+    <text x="168" y="11">transport</text>
+    <rect x="232" y="0" width="14" height="14" rx="3" fill="#16a34a"/>
+    <text x="252" y="11">subscriber</text>
+  </g>
+
+  <!-- Agent/CLI box (left) -->
+  <g transform="translate(40, 140)">
+    <rect width="180" height="120" rx="8" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <rect width="180" height="28" rx="8" fill="#1e40af"/>
+    <rect y="20" width="180" height="8" fill="#1e40af"/>
+    <text x="90" y="19" text-anchor="middle" font-size="13" font-weight="600" fill="#ffffff">Agent / CLI</text>
+    <text x="14" y="56" font-size="12" fill="#0f172a" font-weight="600">python scripts/pushlab_cli.py</text>
+    <text x="14" y="76" font-size="11" fill="#475569">push --title ... --body ...</text>
+    <text x="14" y="92" font-size="11" fill="#475569">--url ... --tag ... --channel ...</text>
+    <text x="14" y="108" font-size="11" fill="#475569">app secret (sk_...)</text>
+  </g>
+
+  <!-- Beacon server (center) -->
+  <g transform="translate(300, 130)">
+    <rect width="220" height="180" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <rect width="220" height="32" rx="10" fill="#0891b2"/>
+    <rect y="22" width="220" height="10" fill="#0891b2"/>
+    <text x="110" y="21" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">BEACON SERVER</text>
+    <text x="110" y="62" text-anchor="middle" font-size="12" fill="#0f172a" font-weight="600">self-hosted push service</text>
+    <text x="110" y="82" text-anchor="middle" font-size="11" fill="#475569">std lib Python • SQLite</text>
+
+    <!-- Sub-modules -->
+    <rect x="20" y="100" width="86" height="28" rx="6" fill="#ecfeff" stroke="#0891b2"/>
+    <text x="63" y="118" text-anchor="middle" font-size="11" fill="#0e7490" font-weight="600">templates</text>
+    <rect x="114" y="100" width="86" height="28" rx="6" fill="#ecfeff" stroke="#0891b2"/>
+    <text x="157" y="118" text-anchor="middle" font-size="11" fill="#0e7490" font-weight="600">categories</text>
+
+    <rect x="20" y="138" width="86" height="28" rx="6" fill="#ecfeff" stroke="#0891b2"/>
+    <text x="63" y="156" text-anchor="middle" font-size="11" fill="#0e7490" font-weight="600">preferences</text>
+    <rect x="114" y="138" width="86" height="28" rx="6" fill="#ecfeff" stroke="#0891b2"/>
+    <text x="157" y="156" text-anchor="middle" font-size="11" fill="#0e7490" font-weight="600">escalation</text>
+  </g>
+
+  <!-- Transport channels (right top) -->
+  <g transform="translate(580, 80)">
+    <text x="0" y="-8" font-size="12" font-weight="700" fill="#0f172a">CHANNELS</text>
+    <g transform="translate(0, 0)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">webpush</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">browsers (PWA)</text>
+      <text x="200" y="20" font-size="10" fill="#94a3b8">default</text>
+    </g>
+    <g transform="translate(0, 40)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">fcm</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">Android native</text>
+      <text x="200" y="20" font-size="10" fill="#94a3b8">Firebase</text>
+    </g>
+    <g transform="translate(0, 80)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">ntfy</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">self-hosted topics</text>
+      <text x="200" y="20" font-size="10" fill="#94a3b8">free</text>
+    </g>
+    <g transform="translate(0, 120)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">bark</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">iPhone native</text>
+      <text x="200" y="20" font-size="10" fill="#94a3b8">bark-server v2</text>
+    </g>
+    <g transform="translate(0, 160)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">gotify</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">self-hosted + Android</text>
+    </g>
+    <g transform="translate(0, 200)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">apprise</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">Telegram, Slack, email...</text>
+    </g>
+    <g transform="translate(0, 240)">
+      <rect width="340" height="32" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="6" fill="#f59e0b"/>
+      <text x="32" y="20" font-size="12" fill="#0f172a">inapp</text>
+      <text x="80" y="20" font-size="10" fill="#94a3b8">in-app inbox</text>
+    </g>
+  </g>
+
+  <!-- Subscribers (right bottom) -->
+  <g transform="translate(580, 360)">
+    <text x="0" y="-8" font-size="12" font-weight="700" fill="#0f172a">SUBSCRIBERS</text>
+    <g>
+      <rect width="60" height="80" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+      <rect x="8" y="8" width="44" height="56" rx="3" fill="#16a34a" opacity="0.15"/>
+      <circle cx="30" cy="74" r="3" fill="#16a34a"/>
+      <text x="30" y="98" text-anchor="middle" font-size="10" fill="#0f172a">Chrome</text>
+    </g>
+    <g transform="translate(72, 0)">
+      <rect width="60" height="80" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+      <rect x="8" y="8" width="44" height="56" rx="3" fill="#16a34a" opacity="0.15"/>
+      <circle cx="30" cy="74" r="3" fill="#16a34a"/>
+      <text x="30" y="98" text-anchor="middle" font-size="10" fill="#0f172a">Android</text>
+    </g>
+    <g transform="translate(144, 0)">
+      <rect width="60" height="80" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+      <rect x="8" y="8" width="44" height="56" rx="3" fill="#16a34a" opacity="0.15"/>
+      <circle cx="30" cy="74" r="3" fill="#16a34a"/>
+      <text x="30" y="98" text-anchor="middle" font-size="10" fill="#0f172a">iPhone</text>
+    </g>
+    <g transform="translate(216, 0)">
+      <rect width="60" height="80" rx="6" fill="#ffffff" stroke="#16a34a" stroke-width="2"/>
+      <rect x="8" y="8" width="44" height="56" rx="3" fill="#16a34a" opacity="0.15"/>
+      <circle cx="30" cy="74" r="3" fill="#16a34a"/>
+      <text x="30" y="98" text-anchor="middle" font-size="10" fill="#0f172a">desktop</text>
+    </g>
+  </g>
+
+  <!-- Arrows: agent -> beacon -->
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M 220 200 L 300 200" marker-end="url(#arrow)"/>
+  </g>
+  <text x="260" y="192" text-anchor="middle" font-size="10" fill="#475569">send</text>
+
+  <!-- Arrows: beacon -> channels (fan out) -->
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M 520 180 L 580 100" marker-end="url(#arrow)"/>
+    <path d="M 520 195 L 580 140" marker-end="url(#arrow)"/>
+    <path d="M 520 210 L 580 180" marker-end="url(#arrow)"/>
+    <path d="M 520 225 L 580 220" marker-end="url(#arrow)"/>
+    <path d="M 520 240 L 580 260" marker-end="url(#arrow)"/>
+    <path d="M 520 255 L 580 300" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Arrows: channels -> subscribers (downward) -->
+  <g stroke="#94a3b8" stroke-width="1.5" fill="none" stroke-dasharray="3 3">
+    <path d="M 750 322 L 750 358" marker-end="url(#arrow2)"/>
+  </g>
+  <text x="758" y="346" font-size="10" fill="#64748b">deliver</text>
+
+  <!-- Callouts -->
+  <g transform="translate(40, 360)" font-size="11">
+    <rect width="220" height="80" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="12" y="20" font-weight="700" fill="#78350f">CONFIGURE</text>
+    <text x="12" y="40" fill="#0f172a">BEACON_URL, BEACON_KEY env vars, or</text>
+    <text x="12" y="56" fill="#0f172a">apps/pushlab/.pushlab/lab.json</text>
+    <text x="12" y="72" fill="#dc2626" font-weight="600">Never commit the secret</text>
+  </g>
+
+  <g transform="translate(280, 360)" font-size="11">
+    <rect width="220" height="80" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="12" y="20" font-weight="700" fill="#78350f">DIAGNOSE</text>
+    <text x="12" y="40" fill="#0f172a">beacon-messages --limit 20</text>
+    <text x="12" y="56" fill="#0f172a">beacon-stats --days 7</text>
+    <text x="12" y="72" fill="#0f172a">targeted, delivered, failed, suppressed</text>
+  </g>
+
+  <g transform="translate(40, 460)" font-size="11">
+    <rect width="460" height="60" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="12" y="20" font-weight="700" fill="#78350f">SMART PATTERNS</text>
+    <text x="12" y="40" fill="#0f172a">--digest-key + --digest-window fold chatty events into one notification</text>
+    <text x="12" y="56" fill="#0f172a">--fallback-channel ntfy --fallback-after 3600 escalates unread in-app pushes</text>
+  </g>
+
+  <!-- Arrowhead definitions -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="arrow2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+</svg>

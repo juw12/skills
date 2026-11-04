@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif">
+  <!-- Background -->
+  <rect width="960" height="540" fill="#f8fafc"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="960" height="56" fill="#0f172a"/>
+  <text x="24" y="36" font-size="20" font-weight="700" fill="#f8fafc">Tether Android QA</text>
+  <text x="200" y="36" font-size="14" fill="#cbd5e1">look → act → verify on a real Android device, with Maestro, Midscene, perf, traces</text>
+
+  <!-- Loop arrow (top, full width cycle) -->
+  <g transform="translate(0, 80)" font-size="11" fill="#0f172a" font-weight="600">
+    <text x="180" y="14" fill="#1e40af">LOOK</text>
+    <text x="440" y="14" fill="#1e40af">ACT</text>
+    <text x="700" y="14" fill="#1e40af">VERIFY</text>
+  </g>
+  <g stroke="#1e40af" stroke-width="2.5" fill="none">
+    <path d="M 240 100 L 460 100" marker-end="url(#loopArrow)"/>
+    <path d="M 520 100 L 720 100" marker-end="url(#loopArrow)"/>
+    <path d="M 750 110 Q 800 110 800 160 Q 800 210 750 210" marker-end="url(#loopArrow)" stroke-dasharray="4 4"/>
+    <text x="812" y="165" font-size="10" fill="#475569">loop</text>
+  </g>
+
+  <!-- Phone (left) -->
+  <g transform="translate(80, 140)">
+    <!-- Phone body -->
+    <rect width="160" height="280" rx="20" fill="#0f172a"/>
+    <rect x="8" y="40" width="144" height="220" rx="6" fill="#f8fafc"/>
+    <!-- Status bar -->
+    <rect x="8" y="40" width="144" height="14" fill="#e2e8f0"/>
+    <text x="80" y="50" text-anchor="middle" font-size="9" fill="#475569">9:41</text>
+    <!-- Notch -->
+    <rect x="60" y="8" width="40" height="6" rx="3" fill="#475569"/>
+    <!-- Screen content: app UI -->
+    <g transform="translate(16, 64)">
+      <text x="0" y="12" font-size="11" font-weight="700" fill="#0f172a">Sign in</text>
+      <rect x="0" y="22" width="128" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="8" y="36" font-size="9" fill="#94a3b8">user@example.com</text>
+      <rect x="0" y="50" width="128" height="22" rx="4" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="8" y="64" font-size="9" fill="#94a3b8">password</text>
+      <rect x="0" y="82" width="128" height="24" rx="4" fill="#1e40af"/>
+      <text x="64" y="98" text-anchor="middle" font-size="11" font-weight="600" fill="#ffffff">Sign in</text>
+      <!-- Resource id badge for ui listing -->
+      <rect x="0" y="120" width="60" height="14" rx="3" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="30" y="130" text-anchor="middle" font-size="8" fill="#78350f">id: login</text>
+    </g>
+    <!-- Home indicator -->
+    <rect x="60" y="266" width="40" height="3" rx="1.5" fill="#94a3b8"/>
+  </g>
+  <text x="160" y="436" text-anchor="middle" font-size="12" font-weight="600" fill="#16a34a">Android device</text>
+  <text x="160" y="452" text-anchor="middle" font-size="10" fill="#64748b">USB / Wi-Fi adb / emulator</text>
+
+  <!-- Tether server (center) -->
+  <g transform="translate(360, 140)">
+    <rect width="240" height="280" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <rect width="240" height="32" rx="10" fill="#0891b2"/>
+    <rect y="22" width="240" height="10" fill="#0891b2"/>
+    <text x="120" y="21" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">TETHER SERVER</text>
+    <text x="120" y="54" text-anchor="middle" font-size="11" fill="#0f172a" font-weight="600">local HTTP API over adb</text>
+
+    <!-- core endpoints grid -->
+    <g transform="translate(16, 70)" font-size="10">
+      <rect width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="50" y="15" text-anchor="middle" fill="#0e7490" font-weight="600">/ui</text>
+      <rect x="104" y="0" width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="154" y="15" text-anchor="middle" fill="#0e7490" font-weight="600">/tap</text>
+      <rect x="0" y="26" width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="50" y="41" text-anchor="middle" fill="#0e7490" font-weight="600">/screenshot</text>
+      <rect x="104" y="26" width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="154" y="41" text-anchor="middle" fill="#0e7490" font-weight="600">/logcat</text>
+      <rect x="0" y="52" width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="50" y="67" text-anchor="middle" fill="#0e7490" font-weight="600">/apps</text>
+      <rect x="104" y="52" width="100" height="22" rx="4" fill="#ecfeff" stroke="#0891b2"/>
+      <text x="154" y="67" text-anchor="middle" fill="#0e7490" font-weight="600">/flow</text>
+    </g>
+
+    <!-- Power modules row -->
+    <g transform="translate(16, 156)">
+      <text x="0" y="-4" font-size="10" font-weight="700" fill="#0f172a">POWER MODULES</text>
+      <rect x="0" y="6" width="100" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="50" y="21" text-anchor="middle" fill="#78350f" font-weight="600">perf / jank</text>
+      <rect x="104" y="6" width="100" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="154" y="21" text-anchor="middle" fill="#78350f" font-weight="600">perfetto trace</text>
+      <rect x="0" y="32" width="100" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="50" y="47" text-anchor="middle" fill="#78350f" font-weight="600">leakcanary</text>
+      <rect x="104" y="32" width="100" height="22" rx="4" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="154" y="47" text-anchor="middle" fill="#78350f" font-weight="600">recording</text>
+    </g>
+
+    <!-- AI step block -->
+    <g transform="translate(16, 220)">
+      <rect width="208" height="44" rx="6" fill="#1e40af" opacity="0.08" stroke="#1e40af"/>
+      <text x="104" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#1e40af">AI steps (Tether or ARTEMIS)</text>
+      <text x="104" y="34" text-anchor="middle" font-size="10" fill="#1e40af">ai "Book the earliest slot" --check</text>
+    </g>
+  </g>
+
+  <!-- Agent/CLI + flow (right) -->
+  <g transform="translate(680, 140)">
+    <rect width="240" height="280" rx="10" fill="#ffffff" stroke="#94a3b8" stroke-width="2"/>
+    <rect width="240" height="32" rx="10" fill="#1e40af"/>
+    <rect y="22" width="240" height="10" fill="#1e40af"/>
+    <text x="120" y="21" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">AGENT / FLOWS</text>
+
+    <!-- CLI -->
+    <g transform="translate(14, 50)">
+      <rect width="212" height="76" rx="6" fill="#0f172a"/>
+      <text x="10" y="18" font-size="10" fill="#94a3b8">$ python scripts/pushlab_cli.py</text>
+      <text x="10" y="34" font-size="10" fill="#86efac">  ui</text>
+      <text x="10" y="48" font-size="10" fill="#86efac">  tap-text "Sign in"</text>
+      <text x="10" y="62" font-size="10" fill="#86efac">  type "user@example.com"</text>
+    </g>
+
+    <!-- Maestro YAML preview -->
+    <g transform="translate(14, 138)">
+      <text x="0" y="-4" font-size="10" font-weight="700" fill="#0f172a">FLOW (maestro.yaml)</text>
+      <rect width="212" height="128" rx="6" fill="#fef3c7" stroke="#f59e0b"/>
+      <text x="10" y="16" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">appId: com.example.app</text>
+      <text x="10" y="32" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">---</text>
+      <text x="10" y="48" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">- launchApp:</text>
+      <text x="20" y="62" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">clearState: true</text>
+      <text x="10" y="78" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">- tapOn: "Email"</text>
+      <text x="10" y="94" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">- inputText: "qa@..."</text>
+      <text x="10" y="110" font-size="10" font-family="ui-monospace, monospace" fill="#0f172a">- assertVisible: "Home"</text>
+    </g>
+  </g>
+
+  <!-- Arrows: phone <-> tether -->
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M 240 280 L 360 280" marker-end="url(#aArrow)"/>
+    <path d="M 360 290 L 240 290" marker-end="url(#aArrow)"/>
+  </g>
+  <text x="300" y="274" text-anchor="middle" font-size="10" fill="#475569">adb read/write</text>
+
+  <!-- Arrows: tether -> agent -->
+  <g stroke="#475569" stroke-width="2" fill="none">
+    <path d="M 600 280 L 680 280" marker-end="url(#aArrow)"/>
+    <path d="M 680 290 L 600 290" marker-end="url(#aArrow)"/>
+  </g>
+  <text x="640" y="274" text-anchor="middle" font-size="10" fill="#475569">JSON in/out</text>
+
+  <!-- Bottom callouts -->
+  <g transform="translate(80, 470)" font-size="10">
+    <rect width="800" height="50" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="12" y="18" font-weight="700" fill="#78350f">RULES OF THUMB</text>
+    <text x="12" y="34" font-size="10" fill="#0f172a">Selectors over coordinates • call ui() after every action • perf numbers must include device model • AI steps for exploration, deterministic flows for regression • bug reports attach screenshot + flow report + logcat lines</text>
+  </g>
+
+  <defs>
+    <marker id="loopArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#1e40af"/>
+    </marker>
+    <marker id="aArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+  </defs>
+</svg>

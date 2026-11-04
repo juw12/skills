@@ -1,0 +1,50 @@
+/* The Morning Paper — widget theme tokens.
+   Source: productivity-widget/app.py THEME + productivity-diary/index.html :root.
+   Copy the :root block into your project, or link this file directly. */
+
+:root{
+  /* Surfaces */
+  --color-paper:#faf8f3;
+  --color-outer:#f0ede6;
+  --color-white:#ffffff;
+
+  /* Ink */
+  --color-ink:#1a1a1a;
+  --color-ink-light:#4a4a4a;
+  --color-muted:#6b6b6b;
+
+  /* Accent — newspaper red */
+  --color-accent:#8b1a1a;
+  --color-accent-dark:#6b1212;
+
+  /* Rules & borders */
+  --color-border:#d4cfc7;
+  --color-border-light:#e8e4dc;
+
+  /* Semantic */
+  --color-productive:#1a7f37;
+  --color-distracting:#b3261e;
+  --color-neutral:#b8860b;
+
+  /* Type */
+  --font-heading:Georgia,'Times New Roman',serif;
+  --font-body:Georgia,'Times New Roman',serif;
+  --font-sans:'Segoe UI',Arial,sans-serif;
+  --font-mono:'Courier New',Courier,monospace;
+
+  /* Spacing */
+  --spacing-xs:4px; --spacing-sm:8px; --spacing-md:16px;
+  --spacing-lg:24px; --spacing-xl:32px; --spacing-xxl:48px;
+
+  /* Shape & elevation */
+  --radius-card:4px;
+  --shadow-card:0 2px 8px rgba(0,0,0,0.08);
+}
+
+[data-theme="night"]{
+  --color-paper:#1c1a17; --color-outer:#141210;
+  --color-ink:#f0ede6; --color-ink-light:#c9c4ba; --color-muted:#8a857c;
+  --color-border:#3a3630; --color-border-light:#2a2722;
+  --color-accent:#d64545; --color-accent-dark:#b3261e;
+  --shadow-card:0 2px 8px rgba(0,0,0,0.4);
+}

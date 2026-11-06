@@ -1,3 +1,11 @@
 __pycache__/
 *.pyc
 .pushlab/
+# project-landing / design: local caches and checkouts
+skills/project-landing/site/
+skills/project-landing/out/
+skills/project-landing/state/gallery/
+skills/project-landing/state/readmes/
+skills/design/workspace/
+skills/design/out/
+skills/design/state/

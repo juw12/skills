@@ -1,0 +1,14 @@
+{
+ "repo": "juw12/juw12.github.io",
+ "live_base": "https://juw12.github.io",
+ "site": "site/juw12.github.io",
+ "out": "out",
+ "protected_files": [
+  "p/index.html",
+  "p/landing.json"
+ ],
+ "protected_slugs": [
+  "buddy"
+ ],
+ "browser_python": null
+}

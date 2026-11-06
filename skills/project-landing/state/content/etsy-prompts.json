@@ -1,0 +1,18 @@
+{
+  "has_shot": true,
+  "shot_kind": "product page",
+  "gallery": [
+    {
+      "file": "g1.jpg",
+      "alt": "Gumroad cover from the repo's assets",
+      "w": 1280,
+      "h": 800
+    },
+    {
+      "file": "g2.jpg",
+      "alt": "Etsy listing thumbnail from the repo's assets",
+      "w": 1280,
+      "h": 800
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+ "about": [
+  "Local service businesses (dentists, plumbers, salons, trainers, mechanics, real-estate agents, restaurants) upload a CSV of past customers, and Respark automatically runs a 5-message reactivation campaign over 30 days: 3 emails and 2 SMS."
+ ],
+ "steps": [
+  {
+   "title": "Sign up",
+   "body": "A local business creates an account."
+  },
+  {
+   "title": "Upload past customers",
+   "body": "Drop in a CSV of customers who stopped coming."
+  },
+  {
+   "title": "Campaign runs itself",
+   "body": "5 messages over 30 days: 3 emails and 2 SMS, with unsubscribe links and tracking."
+  },
+  {
+   "title": "You bill a retainer",
+   "body": "The operator charges clients a setup fee plus a monthly retainer."
+  }
+ ],
+ "extra_stats": [
+  [
+   "43",
+   "self-test checks, all green"
+  ],
+  [
+   "0",
+   "dependencies: Python stdlib + SQLite"
+  ]
+ ]
+}

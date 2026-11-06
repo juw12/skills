@@ -1,0 +1,5 @@
+{
+ "about": [
+  "Validate an idea, ship the repo, file the note: one command. The /sweep pipeline runs from a brief and a Go/No-Go gate through scaffold, build and verify, then syncs your repo to GitHub and mirrors a note."
+ ]
+}

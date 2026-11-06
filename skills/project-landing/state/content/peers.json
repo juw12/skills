@@ -1,0 +1,29 @@
+{
+  "about": [
+    "Peers is a client-side demo of verified reviews across every category: a responsive photo-gallery interface built as a single HTML file, with no build step and no server required."
+  ],
+  "features": [
+    {
+      "title": "One file per build",
+      "body": "All HTML, CSS and JavaScript live in a single file for desktop and another for mobile."
+    },
+    {
+      "title": "Works offline",
+      "body": "Both builds open by double-click and run completely offline in any modern browser."
+    },
+    {
+      "title": "Client-side only",
+      "body": "No network calls at all; demo data is kept in your browser's local storage."
+    },
+    {
+      "title": "Optional Python backend",
+      "body": "A zero-dependency standard-library server adds persistence without ever modifying the front-end files."
+    }
+  ],
+  "privacy": [
+    "Works completely offline when opened directly from the file.",
+    "No backend required.",
+    "All state is stored in your browser's localStorage.",
+    "No external dependencies."
+  ]
+}

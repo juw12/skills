@@ -1,0 +1,8 @@
+{
+  "privacy": [
+    "Focus history is stored locally in `data/productivity.db` (SQLite).",
+    "Friends, parties, chat, profile photos and other sharing features use the Pips online service when you enable/use them. Automatic update checks also contact the official download site.",
+    "The optional coach LLM and MAAS gateway are used only if configured/enabled. MAAS is off by default in public builds. Keep private configuration private.",
+    "The tracker never counts the widget itself as usage, and never counts idle/AFK time toward an app."
+  ]
+}

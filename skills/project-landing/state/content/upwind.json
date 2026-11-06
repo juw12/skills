@@ -1,0 +1,33 @@
+{
+ "about": [
+  "A one-dimensional wave-propagation study solved with the first-order upwind (backward) differencing scheme, accurate to first order in time and space, with solutions plotted at several time levels."
+ ],
+ "features": [
+  {
+   "title": "First-order upwind scheme",
+   "body": "Backward differencing, first-order accurate in both time and space: order of accuracy [Δt, Δx]."
+  },
+  {
+   "title": "Stable for C ≤ 1",
+   "body": "The scheme stays stable as long as the Courant number is at most 1."
+  },
+  {
+   "title": "Fixed, documented setup",
+   "body": "Δx = 0.01 with u = 0.09 and Δt = 0.01, so the run is easy to reproduce."
+  },
+  {
+   "title": "Plotted with Gnuplot",
+   "body": "Velocity profiles at t = 1, 5 and 10 s show how the wave travels and smears."
+  }
+ ],
+ "extra_stats": [
+  [
+   "C ≤ 1",
+   "stability limit (Courant number)"
+  ],
+  [
+   "Δx 0.01",
+   "grid spacing used in the study"
+  ]
+ ]
+}

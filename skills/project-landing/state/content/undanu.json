@@ -1,0 +1,8 @@
+{
+  "privacy": [
+    "Owner-only access is checked on every invitation/guest/RSVP endpoint",
+    "PBKDF2 password hashing; HttpOnly SameSite session cookies; sessions revoked on password change/reset",
+    "Reset tokens are random, stored hashed, single-use, and expire after 1 hour; the forgot-password endpoint gives the same response for unknown emails",
+    "CSRF: mutating requests require `X-Requested-With: fetch` and a same-origin `Origin`"
+  ]
+}

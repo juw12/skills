@@ -1,0 +1,20 @@
+{
+ "features": [
+  {
+   "title": "Search the collection",
+   "body": "Find a browser game by name in seconds."
+  },
+  {
+   "title": "Browse by category",
+   "body": "Games are grouped by category so you can pick by mood."
+  },
+  {
+   "title": "Surprise Me",
+   "body": "One button picks a game for you."
+  },
+  {
+   "title": "Nothing to install",
+   "body": "Every game runs in the browser; saves stay in that browser."
+  }
+ ]
+}

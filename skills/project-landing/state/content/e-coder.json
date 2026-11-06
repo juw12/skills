@@ -1,0 +1,31 @@
+{
+ "about": [
+  "A small coding agent that can read a repo, plan, edit files and run tests. The goal is a coding agent used every day, not a Cursor competitor."
+ ],
+ "features": [
+  {
+   "title": "Explores, then edits",
+   "body": "Reads the repo, plans, makes minimal edits and runs commands."
+  },
+  {
+   "title": "Guardrails on commands",
+   "body": "A command deny-list plus confirmation before anything risky runs."
+  },
+  {
+   "title": "Gitignore-aware context",
+   "body": "It reads only what the task needs, respecting your .gitignore."
+  },
+  {
+   "title": "Zero dependencies",
+   "body": "HTTP through urllib and JSON through json: nothing to pip install."
+  },
+  {
+   "title": "Local and free",
+   "body": "Uses a local Ollama model (qwen3:8b by default) with no API keys; any OpenAI-compatible endpoint also works."
+  },
+  {
+   "title": "All milestones done",
+   "body": "M0 to M4 are complete: a working agent you can use today."
+  }
+ ]
+}

@@ -1,0 +1,252 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cairn: A second brain that lives inside your repo.</title>
+<meta name="description" content="Capture ideas, brainstorm, record decisions and move tasks, all as plain Markdown next to your code. Works with Obsidian, VS Code and any AI assistant.">
+<meta property="og:title" content="Cairn: A second brain that lives inside your repo.">
+<meta property="og:description" content="Capture ideas, brainstorm, record decisions and move tasks, all as plain Markdown next to your code. Works with Obsidian, VS Code and any AI assistant.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://juw12.github.io/p/cairn/">
+<meta property="og:image" content="https://juw12.github.io/p/cairn/shot.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://juw12.github.io/p/cairn/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Cairn", "description": "Capture ideas, brainstorm, record decisions and move tasks, all as plain Markdown next to your code. Works with Obsidian, VS Code and any AI assistant.", "url": "https://juw12.github.io/p/cairn/", "applicationCategory": "DeveloperApplication", "operatingSystem": "Web, Python CLI", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Juwen Lie", "url": "https://juwenlie.pages.dev/"}, "codeRepository": "https://github.com/juw12/cairn", "license": "https://spdx.org/licenses/MIT.html", "image": "https://juw12.github.io/p/cairn/shot.jpg"}</script>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='16' fill='%230f766e'/><text x='32' y='44' font-size='34' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'>C</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --accent: #0f766e;
+    --accent-soft: #dcefeb;
+    --accent-ink: #0b5952;
+    --paper: #fffaf3;
+    --ink: #1f2330;
+    --muted: #5f6475;
+    --line: #ece4d6;
+    --card: #ffffff;
+    --dark: #1f2330;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image: radial-gradient(#e6dccb 1px, transparent 1px);
+    background-size: 22px 22px;
+    line-height: 1.55;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3, .brand { font-family: "Bricolage Grotesque", Inter, sans-serif; letter-spacing: -0.02em; }
+
+  /* header */
+  header.top {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  header.top .wrap { display: flex; align-items: center; gap: 20px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; }
+  .logo {
+    width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center;
+    background: var(--accent); color: #fff; font-weight: 800; font-size: 17px;
+    box-shadow: 0 3px 0 var(--accent-ink);
+  }
+  nav.links { display: flex; gap: 22px; margin-left: auto; font-size: 15px; color: var(--muted); }
+  nav.links a { text-decoration: none; }
+  nav.links a:hover { color: var(--ink); }
+  .view-switch {
+    display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: #fff;
+    padding: 3px; font-size: 13px; font-weight: 600;
+  }
+  .view-switch a { padding: 6px 12px; border-radius: 999px; text-decoration: none; color: var(--muted); }
+  .view-switch a.on { background: var(--ink); color: #fff; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+    padding: 14px 26px; border-radius: 999px; font-weight: 600; font-size: 17px;
+    text-decoration: none; border: 1.5px solid var(--line); background: #fff; color: var(--ink);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+    box-shadow: 0 6px 0 var(--accent-ink), 0 14px 30px -10px var(--accent);
+  }
+  .btn.small { padding: 9px 18px; font-size: 15px; }
+
+  /* hero */
+  .hero { position: relative; text-align: center; padding: 84px 0 40px; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--line);
+    border-radius: 999px; padding: 7px 16px; font-size: 14px; font-weight: 500;
+  }
+  .pill .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .status { margin-left: 6px; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); }
+  .hero h1 { font-size: clamp(42px, 7.4vw, 92px); line-height: 1.02; margin: 26px auto 22px; max-width: 980px; font-weight: 800; }
+  .hero h1 .hl { color: var(--accent); position: relative; white-space: nowrap; }
+  .hero h1 .hl svg { position: absolute; left: 0; right: 0; bottom: -0.16em; width: 100%; height: 0.28em; }
+  .hero p.sub { font-size: clamp(17px, 2vw, 20px); color: var(--muted); max-width: 680px; margin: 0 auto 34px; }
+  .cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .meta { margin-top: 20px; font-size: 14px; color: var(--muted); }
+  .sticker {
+    position: absolute; background: #fff; border: 2px solid var(--ink); border-radius: 12px;
+    padding: 7px 14px; font-weight: 600; font-size: 14px; box-shadow: 4px 4px 0 var(--ink);
+  }
+  .sticker.s1 { left: 4%; top: 120px; transform: rotate(-8deg); background: var(--accent-soft); }
+  .sticker.s2 { right: 3%; top: 96px; transform: rotate(7deg); }
+  .sticker.s3 { right: 6%; top: 330px; transform: rotate(-5deg); background: #e8f6ee; }
+
+  /* showcase */
+  .frame {
+    margin: 52px auto 0; max-width: 960px; background: #fff; border: 2px solid var(--ink);
+    border-radius: 18px; overflow: hidden; box-shadow: 8px 8px 0 var(--ink);
+  }
+  .frame .bar {
+    display: flex; align-items: center; gap: 7px; padding: 11px 16px; border-bottom: 2px solid var(--ink);
+    font-size: 13px; font-weight: 600; background: var(--paper);
+  }
+  .frame .bar i { width: 11px; height: 11px; border-radius: 50%; border: 1.5px solid var(--ink); display: inline-block; }
+  .frame .bar i:first-child { background: var(--accent); }
+  .frame .bar span { margin-left: 8px; }
+  .frame .bar em { margin-left: auto; font-style: normal; color: var(--muted); font-weight: 500; }
+  .frame img { display: block; width: 100%; height: auto; }
+  .panel { padding: 40px; display: grid; gap: 16px; text-align: left; background: linear-gradient(135deg, var(--accent-soft), #fff); }
+  .panel div { background: #fff; border: 1.5px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .panel b { display: block; font-family: "Bricolage Grotesque", sans-serif; font-size: 20px; }
+
+  /* sections */
+  section.block { padding: 96px 0 0; }
+  .kicker { text-align: center; font-size: 13px; font-weight: 700; letter-spacing: .14em; color: var(--accent-ink); text-transform: uppercase; }
+  section.block h2 { text-align: center; font-size: clamp(32px, 4.6vw, 54px); margin: 10px 0 44px; line-height: 1.08; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .card { background: var(--card); border: 1.5px solid var(--line); border-radius: 20px; padding: 28px; }
+  .card .tag { font-size: 12px; font-weight: 700; letter-spacing: .1em; color: var(--accent-ink); text-transform: uppercase; }
+  .card h3 { font-size: 24px; margin: 10px 0 8px; line-height: 1.15; }
+  .card p { margin: 0; color: var(--muted); }
+  .card.dark { background: var(--dark); color: #fff; border-color: var(--dark); }
+  .card.dark p { color: #c9ccd6; }
+  .card.dark .tag { color: var(--accent); }
+  .steps .num {
+    width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; font-weight: 800;
+    background: var(--accent-soft); color: var(--accent-ink); font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .steps a.go { display: inline-block; margin-top: 16px; font-weight: 600; color: var(--accent-ink); text-decoration: none; }
+  .steps a.go:hover { text-decoration: underline; }
+
+  .faq { max-width: 780px; margin: 0 auto; }
+  .faq details { background: #fff; border: 1.5px solid var(--line); border-radius: 16px; padding: 18px 22px; margin-bottom: 12px; }
+  .faq summary { cursor: pointer; font-weight: 600; font-size: 17px; list-style: none; }
+  .faq summary::after { content: "+"; float: right; color: var(--accent-ink); font-weight: 700; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details p { margin: 10px 0 0; color: var(--muted); }
+
+  .band {
+    margin: 110px auto 0; max-width: 1120px; border-radius: 28px; background: var(--accent); color: #fff;
+    text-align: center; padding: 70px 24px; box-shadow: 0 8px 0 var(--accent-ink);
+  }
+  .band h2 { font-size: clamp(36px, 5vw, 60px); margin: 0 0 10px; }
+  .band p { margin: 0 0 30px; font-size: 18px; opacity: .92; }
+  .band .btn { border-color: #fff; }
+  .band .btn.primary { background: #fff; color: var(--accent-ink); border-color: #fff; box-shadow: 0 6px 0 rgba(0,0,0,.18); }
+  .band .btn.ghost { background: transparent; color: #fff; }
+
+  footer { padding: 46px 0 60px; text-align: center; color: var(--muted); font-size: 14px; }
+  footer a { text-decoration: none; margin: 0 8px; }
+  footer a:hover { color: var(--ink); }
+
+  @media (max-width: 860px) {
+    nav.links { display: none; }
+    .sticker { display: none; }
+    .grid3 { grid-template-columns: 1fr; }
+    .hero { padding-top: 56px; }
+    header.top .wrap { gap: 12px; }
+    .view-switch { margin-left: auto; }
+    header.top .btn.small { display: none; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="logo">C</span>Cairn</a>
+    <nav class="links">
+      <a href="#showcase">Preview</a>
+      <a href="#features">Features</a>
+      <a href="#get">Get it</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="view-switch" title="Pick how you want to read about Cairn">
+      <a class="on" href="https://juw12.github.io/p/cairn/">Landing page</a>
+      <a href="https://github.com/juw12/cairn#readme">README</a>
+    </div>
+    <a class="btn primary small" href="https://juw12.github.io/cairn/?demo=1">▶ Try it live</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <span class="sticker s1">plain Markdown</span><span class="sticker s2">free &amp; open source</span><span class="sticker s3" style="top:470px">works with Obsidian ✦</span>
+    <span class="pill"><span class="dot"></span>Web · Python CLI · zero dependencies<span class="status">v1.0</span></span>
+    <h1>A second brain that lives <span class="hl">inside your repo<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 40 4, 80 4, 110 11 S 170 18, 198 7" fill="none" stroke="#1f2330" stroke-width="5" stroke-linecap="round"/></svg></span>.</h1>
+    <p class="sub">Capture ideas, brainstorm, record decisions and move tasks, all as plain Markdown next to your code. Works with Obsidian, VS Code and any AI assistant.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://juw12.github.io/cairn/?demo=1">▶ Try it live</a><a class="btn" href="https://github.com/juw12/cairn#readme">📖 Read the README</a><a class="btn" href="https://github.com/juw12/cairn">View source</a>
+    </div>
+    <div class="meta">Web · Python CLI · open source (MIT) · free · no account</div>
+
+    <div class="frame" id="showcase">
+      <div class="bar"><i></i><i></i><i></i><span>cairn · live demo</span><em>screenshot</em></div>
+      <img src="shot.jpg" alt="Cairn ideas wall screenshot" loading="eager">
+    </div>
+  </section>
+
+  <section class="block wrap" id="features">
+    <div class="kicker">What's inside</div>
+    <h2>Cairn in three ideas.</h2>
+    <div class="grid3">
+      <div class="card dark"><div class="tag">01</div><h3>Plain files, no lock-in</h3><p>Ideas, tasks, decisions, notes and a journal as Markdown in a brain/ folder. Delete Cairn and it still reads fine on GitHub, in Obsidian or in VS Code.</p></div><div class="card"><div class="tag">02</div><h3>One loop, one place</h3><p>Capture from anywhere, brainstorm on the Ideas wall with spark prompts, log decisions, then drag tasks from To do to Done.</p></div><div class="card"><div class="tag">03</div><h3>Knows your code</h3><p>Turns TODO and FIXME comments into tasks that remember the file and line, commits the brain in one click, and writes a context brief for AI assistants.</p></div>
+    </div>
+  </section>
+
+  <section class="block wrap steps" id="get">
+    <div class="kicker">Get it</div>
+    <h2>Pick how you want to start.</h2>
+    <div class="grid3">
+      <div class="card"><div class="num">1</div><h3>Try the demo</h3><p>A sample project, right in your browser. Nothing to install, nothing uploaded.</p><a class="go" href="https://juw12.github.io/cairn/?demo=1">Open the live demo →</a></div><div class="card"><div class="num">2</div><h3>Open your repo</h3><p>In Chrome or Edge, pick your project folder and Cairn reads and writes its brain/ folder directly.</p><a class="go" href="https://juw12.github.io/cairn/">Open a repo folder →</a></div><div class="card"><div class="num">3</div><h3>Run it locally</h3><p>python -m cairn adds code scanning and one-click git commits. Python 3.10+, zero dependencies.</p><a class="go" href="https://github.com/juw12/cairn#readme">Read the setup →</a></div>
+    </div>
+  </section>
+
+  <section class="block wrap" id="faq">
+    <div class="kicker">Questions</div>
+    <h2>Good questions.</h2>
+    <div class="faq">
+      <details open><summary>Is it free?</summary><p>Yes. The source is public on GitHub under the MIT licence.</p></details><details><summary>How is it different from Obsidian or Notion?</summary><p>Notion lives in its own cloud, so your repo can't see it. Obsidian is great at linking notes but knows nothing about your project. Cairn keeps everything in the repo as plain files, so it works alongside both and adds the project loop: an ideas wall, a task board, a decision log, a code TODO inbox and a context pack.</p></details><details><summary>Does it work with my AI assistant?</summary><p>Yes. The context pack writes brain/CONTEXT.md, a short brief of what's in progress, what's next and which decisions are in force. Point Copilot, Claude, Cursor or ChatGPT at it. No API keys involved.</p></details><details><summary>Where is my data?</summary><p>In your repo, as Markdown. The demo keeps data only in your browser. The local app listens on 127.0.0.1 only.</p></details><details><summary>Who made it?</summary><p>Juwen Lie, an R&amp;D mechanical engineer in Batam, Indonesia, as an independent personal project.</p></details>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="band">
+      <h2>Try Cairn.</h2>
+      <p>Give your project a second brain that lives next to the code.</p>
+      <div class="cta">
+        <a class="btn primary" href="https://juw12.github.io/cairn/?demo=1">▶ Try it live</a><a class="btn ghost" href="https://github.com/juw12/cairn#readme">📖 README</a><a class="btn ghost" href="https://github.com/juw12/cairn">Source</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="wrap">
+  <div>Cairn · made by <a href="https://juwenlie.pages.dev/">Juwen Lie</a></div>
+  <div style="margin-top:10px">
+    <a href="https://github.com/juw12/cairn#readme">README</a> · <a href="https://github.com/juw12/cairn">Source</a> · <a href="https://juw12.github.io/p/">All projects</a> · <a href="https://github.com/juw12">GitHub profile</a>
+  </div>
+  <div style="margin-top:10px"><sub>An independent personal project. No employer endorsement implied.</sub></div>
+</footer>
+</body>
+</html>

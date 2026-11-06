@@ -1,0 +1,28 @@
+{
+ "features": [
+  {
+   "title": "Barbers",
+   "body": "Profiles, portfolios, services and weekly schedules; a barber can work part-time at several shops."
+  },
+  {
+   "title": "Shops",
+   "body": "Facility fees, weekly rent and product tiers, with ratings and tips for the shop itself."
+  },
+  {
+   "title": "Booking & payment",
+   "body": "Live slots, a deposit or full payment, and conflict-safe booking so a slot is never double-sold."
+  },
+  {
+   "title": "Find a barber from a short",
+   "body": "Watch a 15-second cut, then book the same slot at whichever shop they work in that day."
+  },
+  {
+   "title": "Creator commissions",
+   "body": "If your short sent the booking, you earn a commission."
+  },
+  {
+   "title": "0% fees, no server",
+   "body": "Accounts, bookings and shorts live on decentralised infrastructure; money moves directly between people."
+  }
+ ]
+}

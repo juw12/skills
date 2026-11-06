@@ -1,0 +1,31 @@
+{
+ "about": [
+  "Send push notifications from your own server, and prove they work on a real phone. One self-hosted, zero-dependency toolkit with two parts that start together and are already linked."
+ ],
+ "features": [
+  {
+   "title": "Beacon, your push server",
+   "body": "Web Push for every PWA, FCM for Android, in-app banners and ntfy, Bark, Gotify and Apprise channels."
+  },
+  {
+   "title": "Targeting and scheduling",
+   "body": "Segments, schedules, digests, multi-step escalation, templates and per-user preferences."
+  },
+  {
+   "title": "Tether, your device lab",
+   "body": "Your Android phone in the browser: a live HD screen, recorded QA flows and notification checks."
+  },
+  {
+   "title": "Every phone at once",
+   "body": "Run one recorded flow on every connected phone at the same time."
+  },
+  {
+   "title": "Performance budgets",
+   "body": "Startup, jank, memory and CPU budgets, Perfetto traces and LeakCanary leak checks."
+  },
+  {
+   "title": "Agent skills included",
+   "body": "Claude Code and Codex skills plus a CLI drive both parts."
+  }
+ ]
+}

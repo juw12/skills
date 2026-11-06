@@ -1,0 +1,32 @@
+{
+ "about": [
+  "A free, $0-capital crypto signal bot. It sends RSI + MACD confluence alerts to Telegram, paper-tracks every trade, and ships with a backtester, a parameter tuner and an opt-in Binance executor. It only places real orders if you explicitly switch live trading on."
+ ],
+ "features": [
+  {
+   "title": "Confluence, not single signals",
+   "body": "LONG only when RSI recovers from oversold, the MACD histogram flips positive and price is above the 50 EMA (mirrored for SHORT)."
+  },
+  {
+   "title": "Risk built in",
+   "body": "Stop at 1.5 × ATR, target at 2:1 reward-to-risk, 2% risk per trade on the paper ledger."
+  },
+  {
+   "title": "Telegram alerts",
+   "body": "An alert on every signal and every exit."
+  },
+  {
+   "title": "No API key for data",
+   "body": "Prices come from Yahoo Finance and work through most corporate proxies."
+  },
+  {
+   "title": "Backtest and tune",
+   "body": "A multi-symbol sweep and a grid parameter tuner ship with it."
+  },
+  {
+   "title": "You stay in control",
+   "body": "Alerts by default; the Binance executor is opt-in, testnet first, with hard risk caps."
+  }
+ ],
+ "checklist": []
+}

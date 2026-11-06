@@ -1,0 +1,81 @@
+{
+ "ideas": [
+  {
+   "title": "Plain files, no lock-in",
+   "body": "Everything is Markdown in a brain/ folder. Delete Cairn and it still reads fine on GitHub, in Obsidian or in VS Code."
+  },
+  {
+   "title": "Knows your code",
+   "body": "Turns TODO/FIXME comments into tasks that remember the file and line, and commits the brain in one click."
+  },
+  {
+   "title": "Made for AI assistants too",
+   "body": "One click writes brain/CONTEXT.md, a project brief Copilot, Claude, Cursor or ChatGPT can read. No API keys."
+  }
+ ],
+ "about": [
+  "Cairn puts one calm place inside the project, built around how project work actually moves: capture, brainstorm, decide, do, remember.",
+  "Ideas sit in Notion, tasks in GitHub Issues, decisions in Slack threads, TODOs in code comments, and the \"why\" lives in someone's head; Obsidian and Notion are great at notes, but neither knows anything about your repo."
+ ],
+ "steps": [
+  {
+   "title": "Try the demo",
+   "body": "A sample project (an offline hiking app) right in your browser. It's saved only in your browser."
+  },
+  {
+   "title": "Open your real repo",
+   "body": "At juw12.github.io/cairn choose Open a repo folder. Chrome and Edge on desktop read and write the folder directly; nothing is uploaded."
+  },
+  {
+   "title": "Run the local app",
+   "body": "python -m cairn --root . opens 127.0.0.1:4777 with code scanning and one-click Commit brain. Python 3.10+, no dependencies."
+  }
+ ],
+ "steps_title": "Three ways to run it",
+ "checklist": [
+  "Quick capture bar on every screen, plus cairn add from the terminal",
+  "Ideas wall with Spark prompts and Promote to task",
+  "To do → Doing → Done board with checklists",
+  "Numbered decision records, reviewed in PRs like code",
+  "Code inbox for TODO, FIXME and HACK comments",
+  "brain/CONTEXT.md context pack for AI assistants",
+  "Share your brain on GitHub with the cairn-brain topic",
+  "40 tests, including Python↔JS parity and browser e2e"
+ ],
+ "privacy": [
+  "No account and no telemetry. Fonts and icons are bundled.",
+  "The only external requests go to api.github.com and raw.githubusercontent.com, and only when you look someone up or open a published brain. Your own brain never leaves your machine.",
+  "The local server binds to 127.0.0.1 only, checks the Host header and requires a custom header on every API call.",
+  "It reads and writes only .md files inside the brain folder; paths that escape it are refused (tested)."
+ ],
+ "limits": [
+  "Opening a real repo folder in the browser needs Chrome or Edge on desktop (File System Access API).",
+  "Looking people up uses unsigned GitHub API calls, limited to 60 per hour per IP; results are cached for 10 minutes.",
+  "Commit brain commits only brain/; you push with your usual git tool."
+ ],
+ "readme_faq": [
+  {
+   "q": "How is it different from Obsidian or Notion?",
+   "a": "Notion lives in its own cloud, so your repo can't see it. Obsidian is great at linking notes but knows nothing about your project. Cairn keeps everything in the repo as plain files, so it works alongside both and adds the project loop: an ideas wall, a task board, a decision log, a code TODO inbox and a context pack."
+  },
+  {
+   "q": "Does it work with my AI assistant?",
+   "a": "Yes. The context pack writes brain/CONTEXT.md, a short brief of what's in progress, what's next and which decisions are in force. Point Copilot, Claude, Cursor or ChatGPT at it. No API keys involved."
+  }
+ ],
+ "quickstart": {
+  "heading": "Use it",
+  "lang": "bash",
+  "code": "git clone https://github.com/juw12/cairn\ncd your-project\npython -m cairn --root .          # opens http://127.0.0.1:4777\ncairn add \"todo: ship v1 #release\"  # capture from the terminal\ncairn context                      # write brain/CONTEXT.md"
+ },
+ "extra_stats": [
+  [
+   "40",
+   "tests: core, API, CLI, Python↔JS parity, browser e2e"
+  ],
+  [
+   "0",
+   "dependencies: Python 3.10+ standard library"
+  ]
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "about": [
+  "“Your life, drawn as a map you walk through.” A calm photo diary, walking map and weather town in one app."
+ ],
+ "features": [
+  {
+   "title": "A diorama for every day",
+   "body": "Each day becomes a card lit by that day's weather."
+  },
+  {
+   "title": "Photo diary",
+   "body": "One calm entry a day, with your photos."
+  },
+  {
+   "title": "Walking map",
+   "body": "Your days drawn as a map you can walk back through."
+  },
+  {
+   "title": "Runs anywhere",
+   "body": "Open it in any browser; add it to the home screen and it works offline after the first visit."
+  },
+  {
+   "title": "Your diary stays on your device",
+   "body": "Each device keeps its own diary, and you can move it with a backup from Settings."
+  }
+ ]
+}

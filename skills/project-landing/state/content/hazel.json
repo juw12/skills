@@ -1,0 +1,27 @@
+{
+ "about": [
+  "One creator studio, three apps. Hazel brings Shortcraft, Sped and the original Hazel together under one name, one home page and one switcher."
+ ],
+ "features": [
+  {
+   "title": "Hazel Shorts",
+   "body": "Faceless 9:16 explainer shorts: scenes, voice, captions, generated music, MP4 export and YouTube upload."
+  },
+  {
+   "title": "Hazel Sped",
+   "body": "Sped-up, slowed and mashup edits of your own songs as 9:16 MP4s; works offline."
+  },
+  {
+   "title": "Hazel Long",
+   "body": "A long-form studio: create from a prompt, edit, repurpose and publish."
+  },
+  {
+   "title": "Cuts the silences for you",
+   "body": "The Windows desktop app auto-cuts silences and filler words."
+  },
+  {
+   "title": "Old links keep working",
+   "body": "Shortcraft and Sped links redirect to their new Hazel homes."
+  }
+ ]
+}

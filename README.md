@@ -16,6 +16,15 @@ The common thread: agents that **verify instead of claiming**. They run the chec
 | [`memory-management`](skills/memory-management/SKILL.md) | Durable project memory (decisions, lessons, context) in an Obsidian vault, so it survives across sessions. |
 | [`widgettheme`](skills/widgettheme/SKILL.md) | Applies "The Morning Paper" editorial design system (cream paper, ink black, newspaper red, serif headlines). |
 
+## Design skills
+
+One `/design` command for an app and its landing page. The app is the source of truth; the landing page follows it.
+
+| Skill | What it does |
+|---|---|
+| [`design`](skills/design/SKILL.md) | `/design <app>`: audits the app's own UI on desktop and phone against 8 objective gates (contrast, tap targets, text size, overflow, alt text, errors, viewport, headings), fixes it in its repo, runs the app's tests, refuses regressions and ships a PR with a before/after table. Then syncs the brand (app accent + live screenshot) into the landing page. Playwright + `gh`. |
+| [`project-landing`](skills/project-landing/SKILL.md) | README-faithful landing pages for every project on `juw12.github.io/p/<slug>/`: each page gets its own font, layout, emblem and headlines (a gate blocks duplicates), a "How it's built" section from real repo facts, page gates, screenshots and a publish step that can't touch the gallery. |
+
 ## Push Lab QA skills
 
 Companion skills for [Push Lab](https://github.com/juw12/projects/tree/main/apps/pushlab): self-hosted push notifications (Beacon) and real-phone testing (Tether). Each skill ships the same zero-dependency `scripts/pushlab_cli.py`, so you can install it on its own.

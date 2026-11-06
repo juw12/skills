@@ -1,0 +1,43 @@
+{
+ "features": [
+  {
+   "title": "Same playground, new home",
+   "body": "Chat as different users, simulate traffic and watch the dashboard, now inside Steward."
+  },
+  {
+   "title": "Daily off-topic allowance",
+   "body": "The THROTTLE outcome ScopeGuard introduced lives on in Steward."
+  },
+  {
+   "title": "Unmet-demand report",
+   "body": "See what people ask for that your assistant doesn't cover yet."
+  },
+  {
+   "title": "History kept",
+   "body": "ScopeGuard's full history stays in its own repository's git log."
+  }
+ ],
+ "steps_title": "Where ScopeGuard lives now",
+ "steps": [
+  {
+   "title": "Open the Steward playground",
+   "body": "The live playground at juw12.github.io/steward is the ScopeGuard app, now inside Steward."
+  },
+  {
+   "title": "Chat, simulate, watch",
+   "body": "Chat as different users, simulate traffic and watch the dashboard react."
+  },
+  {
+   "title": "Read or self-host the code",
+   "body": "Browser app, self-hosted server and tests live in juw12/steward under apps/playground."
+  }
+ ],
+ "checklist": [
+  "Allow, steer, redirect, throttle or block every message",
+  "In-browser app with a live dashboard",
+  "Review-queue learning",
+  "Policy templates",
+  "Accuracy page",
+  "Self-hosted standard-library Python server"
+ ]
+}

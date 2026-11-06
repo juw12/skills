@@ -1,0 +1,31 @@
+{
+ "about": [
+  "A monorepo for product projects, each promoted from prototype to a real, runnable, deployable project, offline-first and server-optional."
+ ],
+ "features": [
+  {
+   "title": "Orbis",
+   "body": "Communication, identity, protection and hiring in one app, on a zero-dependency Python server."
+  },
+  {
+   "title": "Peers",
+   "body": "Verified reviews across category modes, every category sharing one interface."
+  },
+  {
+   "title": "House of Articles",
+   "body": "Athlete-moment sneaker news with a live market feed."
+  },
+  {
+   "title": "Hazel",
+   "body": "A desktop studio for creators: auto-cut, repurpose, publish, measure."
+  },
+  {
+   "title": "Lingua",
+   "body": "Live-translated Teams captions in an always-on-top overlay."
+  },
+  {
+   "title": "Pips",
+   "body": "An always-on-top Pomodoro timer and daily score widget."
+  }
+ ]
+}

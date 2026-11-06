@@ -1,0 +1,45 @@
+{
+ "about": [
+  "Steward sits between your app and the model: it lets on-mission questions through, politely redirects curious drift, blocks prompt injection, logs the cost of every request per feature and gives the business a dashboard."
+ ],
+ "features": [
+  {
+   "title": "Browser playground",
+   "body": "Chat as different users, simulate traffic, watch the dashboard, correct the classifier and measure accuracy against a labelled evaluation set."
+  },
+  {
+   "title": "Allow, redirect or block",
+   "body": "Every request is classified on-mission, curious drift or hostile injection, and handled accordingly."
+  },
+  {
+   "title": "Daily off-topic allowance",
+   "body": "A THROTTLE outcome gives users a small off-topic budget per day instead of a hard no."
+  },
+  {
+   "title": "Unmet-demand report",
+   "body": "See what people keep asking for that your assistant doesn't cover yet."
+  },
+  {
+   "title": "OpenAI-compatible proxy",
+   "body": "A FastAPI proxy with an audit log and stats: point your client at it, nothing else changes."
+  },
+  {
+   "title": "SDKs for Python and TypeScript",
+   "body": "The same guard in both languages, 11/11 tests passing in each."
+  },
+  {
+   "title": "Measured, not guessed",
+   "body": "On the CAD-copilot policy the local classifier scores 85% on a final held-out set; an optional LLM judge is there for production."
+  }
+ ],
+ "extra_stats": [
+  [
+   "85%",
+   "accuracy on a held-out evaluation set"
+  ],
+  [
+   "40+",
+   "tests across SDKs, proxy and server"
+  ]
+ ]
+}

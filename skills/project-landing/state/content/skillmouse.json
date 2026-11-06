@@ -1,0 +1,28 @@
+{
+ "features": [
+  {
+   "title": "Any model",
+   "body": "Runs Claude Code, Codex, OpenCode and Gemini skills on OpenAI, Anthropic, Gemini, OpenRouter, DeepSeek, Groq or local Ollama / LM Studio models."
+  },
+  {
+   "title": "Finds what you have",
+   "body": "Discovers the skills and agents already on your PC."
+  },
+  {
+   "title": "From your mouse",
+   "body": "Select text anywhere and press the forward side button, or Ctrl+Shift+Space."
+  },
+  {
+   "title": "Drag gesture (donut)",
+   "body": "Hold Ctrl and drag text, files or images: a donut of your skills appears at the cursor; drop on a slice to run it."
+  },
+  {
+   "title": "Reads dropped files",
+   "body": "Text, code and Office documents are read automatically when you drop them."
+  },
+  {
+   "title": "Back where you were",
+   "body": "Insert into app pastes the answer back, or copy it and ask a follow-up."
+  }
+ ]
+}

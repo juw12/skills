@@ -1,0 +1,33 @@
+{
+ "about": [
+  "A one-dimensional wave-propagation study solved with the explicit two-step MacCormack predictor-corrector method, second-order accurate in time and space, with solutions plotted at several time levels."
+ ],
+ "features": [
+  {
+   "title": "Predictor-corrector",
+   "body": "The explicit two-step MacCormack method: predict with one difference, correct with the other."
+  },
+  {
+   "title": "Second-order accurate",
+   "body": "Order of accuracy [(Δt)², (Δx)²], for C ≤ 1."
+  },
+  {
+   "title": "Same setup as Upwind",
+   "body": "Δx = 0.01 with u = 0.09 and Δt = 0.01, so the two schemes can be compared directly."
+  },
+  {
+   "title": "Plotted with Gnuplot",
+   "body": "Velocity profiles at t = 1, 5 and 10 s."
+  }
+ ],
+ "extra_stats": [
+  [
+   "2nd",
+   "order accuracy in time and space"
+  ],
+  [
+   "Δx 0.01",
+   "grid spacing used in the study"
+  ]
+ ]
+}

@@ -1,0 +1,39 @@
+{
+  "about": [
+    "A small Windows daemon that keeps your live Outlook Inbox and Sent Items clean by archiving every message into a separate Archives data file, while logging each one and popping a desktop toast so nothing is missed."
+  ],
+  "steps": [
+    {
+      "title": "Log it",
+      "body": "Full sender, subject and body go to a rolling log file."
+    },
+    {
+      "title": "Toast it",
+      "body": "A Windows toast shows the message as it arrives."
+    },
+    {
+      "title": "Mark it read",
+      "body": "Inbox items are marked as read automatically."
+    },
+    {
+      "title": "Archive it",
+      "body": "The item moves into the Archives PST, so the live Inbox and Sent Items stay empty."
+    }
+  ],
+  "features": [
+    {
+      "title": "Starts at logon",
+      "body": "Registers a Task Scheduler job, and a watchdog restarts the daemon if it dies."
+    },
+    {
+      "title": "One-click control",
+      "body": "Start, stop, toggle and restart scripts, plus a taskbar launcher."
+    },
+    {
+      "title": "Sweep what's already there",
+      "body": "A one-shot sweep archives items that were in the mailbox before you started."
+    }
+  ],
+  "has_shot": true,
+  "shot_kind": "source code"
+}

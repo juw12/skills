@@ -1,0 +1,40 @@
+{
+  "about": [
+    "A Python + Playwright tool that drives Microsoft Edge through a Windchill-based PLM “Search Part To AML” approval workflow, and stops before Submit so a person always makes the final check."
+  ],
+  "steps": [
+    {
+      "title": "Find the part",
+      "body": "Searches the part and starts the approval workflow."
+    },
+    {
+      "title": "Fill everything in",
+      "body": "Assigns the project, uploads or links the approval documents and fills the approval form."
+    },
+    {
+      "title": "Add the reviewer",
+      "body": "Adds the reviewer and verifies every field."
+    },
+    {
+      "title": "You press Submit",
+      "body": "It stops before Submit, so the final check is always human."
+    }
+  ],
+  "features": [
+    {
+      "title": "Four ready launchers",
+      "body": "Final or conditional approval, customer-assigned or not: one double-click each."
+    },
+    {
+      "title": "Your site, your config",
+      "body": "Portal URL, selectors and default reviewer live in a git-ignored config file."
+    },
+    {
+      "title": "Installs itself",
+      "body": "On Windows with Edge and Python 3, the launchers install Playwright on first run."
+    }
+  ],
+  "status": "v0.1 preliminary",
+  "has_shot": true,
+  "shot_kind": "source code"
+}

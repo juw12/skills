@@ -1,0 +1,35 @@
+{
+  "about": [
+    "Small, local, private tools for underrated problems, and a factory to make many more. Python 3.9+ standard library only: no installs, no accounts, and no data leaves your Mac (except heat_risk city mode, which calls the free Open-Meteo forecast)."
+  ],
+  "quickstart": {
+    "heading": "Use the tools",
+    "lang": "shell",
+    "code": "cd toolsmith\npython3 toolbox.py list\npython3 toolbox.py demo scam_check\npython3 toolbox.py run subscription_leaks ~/Downloads/bank.csv\npython3 toolbox.py serve"
+  },
+  "steps": [
+    {
+      "title": "Pick an idea",
+      "body": "python3 toolbox.py ideas shows a scored backlog of underrated problems."
+    },
+    {
+      "title": "Scaffold it",
+      "body": "toolbox.py new creates a new tool from the template."
+    },
+    {
+      "title": "Test everything",
+      "body": "toolbox.py test runs every tool's self-test."
+    }
+  ],
+  "steps_title": "A factory for more tools.",
+  "has_shot": true,
+  "shot_kind": "local web page",
+  "gallery": [
+    {
+      "file": "g1.jpg",
+      "alt": "Real output of python3 toolbox.py demo scam_check",
+      "w": 1280,
+      "h": 800
+    }
+  ]
+}

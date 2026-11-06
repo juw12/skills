@@ -1,0 +1,32 @@
+{
+  "about": [
+    "A short-form, feed-first app where sneakers are the content and athletes are the reason they matter. When a player debuts a shoe or a pro races in a new model, resale demand reacts; House of Articles ties that moment to the live price move in one feed."
+  ],
+  "features": [
+    {
+      "title": "The wedge",
+      "body": "“Athlete wore X → its price moved Y%. Here's why, and here's where to buy it.”"
+    },
+    {
+      "title": "Mobile feed",
+      "body": "A mobile-first vertical feed with 20 screens: home feed, brand pages, shoe detail, cart, profile and the Ledger."
+    },
+    {
+      "title": "Desktop dashboard",
+      "body": "Six views: Feed, Market, Calendar, Collections, Watchlist and Ledger."
+    },
+    {
+      "title": "Provenance on every price",
+      "body": "Each colorway is tagged verified, estimated or synthetic, so you know where a number came from."
+    },
+    {
+      "title": "A real data spine",
+      "body": "7 brands, 13 sneakers and 13 colorways across basketball, running, HYROX and lifestyle."
+    },
+    {
+      "title": "No backend",
+      "body": "Both builds are static with inline data, so they open anywhere."
+    }
+  ],
+  "privacy": []
+}

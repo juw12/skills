@@ -1,0 +1,35 @@
+{
+ "about": [
+  "Your friends keep sending you reels. You keep scrolling past them. Nudge reads your own chat exports and shows who has been reaching out while you weren't really there, as a short, kind to-do list for your friendships."
+ ],
+ "features": [
+  {
+   "title": "Reads it in your browser",
+   "body": "Drop an Instagram, WhatsApp, Messenger or Telegram export into the page: nothing is uploaded, and there's no account or server."
+  },
+  {
+   "title": "Who's waiting on you",
+   "body": "A self-contained page with clickable links to every unanswered reel and a copy button for the opener."
+  },
+  {
+   "title": "A ready-to-send opener",
+   "body": "Each friend comes with a kind line to restart the conversation."
+  },
+  {
+   "title": "No dragging after the first time",
+   "body": "Connect your Downloads folder once in Edge or Chrome and Nudge picks up the newest exports by itself."
+  },
+  {
+   "title": "Share straight from WhatsApp",
+   "body": "On Android, Export chat → nudge lands it in the app directly."
+  },
+  {
+   "title": "Mark as replied",
+   "body": "Tap ✓ Replied as you catch up; if that friend messages again in a later export, they come back."
+  },
+  {
+   "title": "Keeps links, not messages",
+   "body": "It remembers who-sent-what-when and links only, never message text, and only on your device."
+  }
+ ]
+}

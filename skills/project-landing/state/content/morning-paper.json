@@ -1,0 +1,31 @@
+{
+ "about": [
+  "A morning newspaper for markets, AI and chips, robotics, space and tech. Hundreds of headlines are boiled down to the stories that matter: coverage from several outlets is merged, there's an AI brief at the top and a “why it matters” line on every story."
+ ],
+ "features": [
+  {
+   "title": "Curated news",
+   "body": "Refreshed through the day, with stories you already saw in earlier editions skipped."
+  },
+  {
+   "title": "An AI brief on top",
+   "body": "The day's essentials first, then a “why it matters” line on every story."
+  },
+  {
+   "title": "Stock desk",
+   "body": "Forward P/E, quality and valuation scores, and live prices with intraday charts, for big US tech and Indonesian blue chips."
+  },
+  {
+   "title": "Portfolio on every device",
+   "body": "Sign in once and your holdings and alerts follow you to your phone, laptop and work PC."
+  },
+  {
+   "title": "Price alerts",
+   "body": "Above/below, support breaks and SMA-200 crosses."
+  },
+  {
+   "title": "Installable",
+   "body": "Add it to your home screen and it behaves like an app."
+  }
+ ]
+}

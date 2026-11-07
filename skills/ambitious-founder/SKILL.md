@@ -207,6 +207,9 @@ say so.
    most; top three pass reasons with one quote each; what would flip a no; one
    sentence on what to change and which stage does it. State the honest limits.
 
+The same `customer.json` also drives /hone's reviewer bots (`~/.vector/skills/hone/bots/README.md`):
+the personas review the built app's screenshots and their fix list drives an auto-fix loop.
+
 ## Stage 4 - Pricing (`founder/pricing-curve.md`, `founder/pricing.md`)
 
 Run `van_westendorp.py` on the panel answers (or a real survey CSV with
@@ -231,7 +234,9 @@ rates.
 
 `numbers.json` fields: `unit`, `price`, `variable` (cost of ONE unit),
 `fixed_monthly`, `startup`, `plan_per_day`, `ramp_per_day` (12 months),
-`capacity_per_day`. Sources in order: user's quotes/invoices → checkable public
+`capacity_per_day`. Free or tips-only product: set `"model": "free"` (or `"tips"`, or `price` 0) with
+`fixed_monthly`, `users_per_month`, `supporters_pct`, `avg_tip`; compile then judges tips vs running cost
+and the panel, and the best verdict is "Sustainable (free)". Sources in order: user's quotes/invoices → checkable public
 prices (log each in `cfo-sources.md`) → marked estimates with reasoning. The ramp
 is where plans lie: sanity-check it against the panel's buy rate and first-month
 purchases. Run the tool; it flags price below variable cost, break-even above
@@ -313,6 +318,11 @@ Numbers, Competitors, A/B offer (same seed) and Verdict tabs. Standalone repo: g
   `panel-ai/`; only the user's explicit "make this the official panel" replaces `panel/`.
 - The Verdict tab runs `compile.py`, so the rules above still hold. Use it to show the panel and to try offers;
   never to bypass a stage.
+- Review loop tab: the board lenses (Offers, Product, Monopoly) plus a clarity check and the CFO lens act as
+  reviewer bots in the arena. They post FIX / OK / YOUR CALL, an editor applies the fixes, the same buyers
+  (same seed) judge each version, and only a version that wins more buyers is kept (rule 3: reviewers
+  suggest, buyers judge). It never invents facts (slots or "(confirm)"), never changes the price, and only
+  replaces the pitch when the user presses *Use as my pitch*. Writes `review-loop.md`; never counts for the verdict.
 - Smoke tests: `python SKILL_DIR\studio\test_api.py`.
 
 ## Ending every Mode B run

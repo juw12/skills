@@ -57,6 +57,12 @@ class Compile(unittest.TestCase):
         v, _ = plan.compile_plan(self.d)
         self.assertEqual(v, "Not yet")
 
+    def test_good_numbers_without_a_panel_is_incomplete(self):
+        self.numbers()
+        v, text = plan.compile_plan(self.d)
+        self.assertEqual(v, "Incomplete")
+        self.assertIn("No buyer panel yet. Run /founder-consumer", text)
+
 
 if __name__ == "__main__":
     unittest.main()

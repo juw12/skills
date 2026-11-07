@@ -50,6 +50,9 @@ OpenCode and SkillMouse; hosts without tools use **Single-response mode** at the
 - `/founder-<stage>` (board, competitors, consumer, pricing, offer, cfo,
   marketing, brand, ops, launch, plan) → run that stage of Mode B alone; it reads
   whatever already exists in `founder/`.
+- `/founder-studio` → open **Founder Studio** (Stage 3 to 11 made visual): run
+  `python SKILL_DIR\studio\server.py --root founder` and give the user the URL it prints.
+  See "Founder Studio" below.
 - Nothing after the command → use the user's most recent request; if none, ask
   for it in one line and stop.
 
@@ -298,6 +301,19 @@ founder` → `business-plan.md`. The verdict - Profitable / Not yet / Incomplete
 comes only from the script: every unit earns money, year 1 profits, break-even
 fits capacity, enough of the panel buys. Never write Profitable by hand. Then the
 `one-pager.md` for a two-minute reader, same numbers word for word.
+
+## Founder Studio (`SKILL_DIR\studio\`, optional)
+
+A local web app on the same files and scripts: 3D buyer bots walk to BUY or PASS, then Results, Pricing,
+Numbers, Competitors, A/B offer (same seed) and Verdict tabs. Standalone repo: github.com/juw12/founder-studio.
+
+- Start: `python SKILL_DIR\studio\server.py --root founder` (one project) or `--root <folder of ideas>`.
+  Python stdlib only; three.js is bundled. It uses this skill's `tools/`.
+- Quick sim is a seeded heuristic (labelled, never counts). AI buyers use the user's own key or Ollama and write
+  `panel-ai/`; only the user's explicit "make this the official panel" replaces `panel/`.
+- The Verdict tab runs `compile.py`, so the rules above still hold. Use it to show the panel and to try offers;
+  never to bypass a stage.
+- Smoke tests: `python SKILL_DIR\studio\test_api.py`.
 
 ## Ending every Mode B run
 

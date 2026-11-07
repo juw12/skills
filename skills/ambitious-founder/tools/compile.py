@@ -5,9 +5,10 @@ Reads everything the other ten skills wrote into founder/ and assembles one
 document, founder/business-plan.md, with a verdict at the top. The verdict is
 computed from the numbers, never written by hand:
 
-    Profitable   every check that has data passes
+    Profitable   every check passes, including the buyer panel
     Not yet      at least one check fails (each failure is listed with its number)
-    Incomplete   there are no numbers yet (run founder-cfo first)
+    Incomplete   there are no numbers yet (run founder-cfo first), or the numbers pass
+                 but there is no buyer panel yet (run founder-consumer first)
 
 The checks:
     1. each unit earns money before fixed costs        (founder/numbers.json)
@@ -82,7 +83,12 @@ def verdict(d, min_buy_rate=0.25):
     raw = _read(os.path.join(d, "numbers.json"))
     if raw:
         ue = _load_unit_economics()
-        numbers = ue.analyse(json.loads(raw))
+        try:
+            numbers = ue.analyse(json.loads(raw))
+        except Exception as error:  # e.g. a free tool (price 0): report, don't crash
+            checks.append((False, "Numbers could not be modelled: %s." % error))
+            numbers = None
+    if numbers:
         u = numbers["unit"]
         c = numbers["contribution"]
         checks.append((c > 0, "Each %s earns $%.2f before fixed costs (%.0f%% contribution)." % (u, c, numbers["contribution_pct"] * 100)
@@ -103,10 +109,13 @@ def verdict(d, min_buy_rate=0.25):
             panel["buys"], panel["answered"], r * 100, min_buy_rate * 100)))
     if numbers is None:
         v = "Incomplete"
-    elif all(ok for ok, _ in checks):
-        v = "Profitable"
-    else:
+    elif not all(ok for ok, _ in checks):
         v = "Not yet"
+    elif panel is None:
+        # ambitious-founder: never "Profitable" from the numbers alone.
+        v = "Incomplete"
+    else:
+        v = "Profitable"
     return v, checks, numbers, panel
 
 
@@ -124,7 +133,10 @@ def compile_plan(d, min_buy_rate=0.25):
     for ok, text in checks:
         L.append("- %s %s" % ("✓" if ok else "✗", text))
     if v == "Incomplete":
-        L.append("- No numbers yet. Run /founder-cfo, then compile again.")
+        if numbers is None:
+            L.append("- No numbers yet. Run /founder-cfo, then compile again.")
+        else:
+            L.append("- No buyer panel yet. Run /founder-consumer, then compile again.")
     L.append("")
     if numbers:
         be = numbers["breakeven_per_day"]

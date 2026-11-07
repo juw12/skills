@@ -9,6 +9,7 @@ The common thread: agents that **verify instead of claiming**. They run the chec
 | Skill | What it does |
 |---|---|
 | [`refine-loop`](skills/refine-loop/SKILL.md) | Improve-until-done without babysitting: frozen rubric, baseline score, separate judge, keep-best, blind A/B anti-inflation check and hard stop rules. Includes an objective self-checker. |
+| [`ambitious-founder`](skills/ambitious-founder/SKILL.md) | `/be-ambitious` + `/founder` in one. Raises any task (goal beyond the goal, expert-grade depth, outside judge, copy-ready rewritten prompt) and pressure-tests a business or product idea: 4-lens board (incl. a Make lens for hardware), simulated buyer panel, Van Westendorp pricing and unit economics, ending in a verdict computed by a script. Combines RoboNuggets' be-ambitious and Jake Schincariol's founder-skill (both MIT). |
 | [`harness`](skills/harness/SKILL.md) | Finds and actually **runs** a project's build/test/lint commands and reports pass/fail truthfully. |
 | [`heartbeat`](skills/heartbeat/SKILL.md) | A short, honest status of running jobs and services (servers, watchdogs, long tasks) that flags stalls. |
 | [`delegator`](skills/delegator/SKILL.md) | Breaks a goal into small tasks, routes each to the best agent or skill, then combines the results. |

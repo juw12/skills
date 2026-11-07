@@ -5,6 +5,18 @@ buyer segments and pitch, then watch 3D buyer bots walk up to your stall, think,
 Every number they produce is checked by the skill's own scripts (`panel.py`, `van_westendorp.py`,
 `unit_economics.py`, `compile.py`).
 
+## Online demo
+
+**https://juw12.github.io/founder-studio/** - nothing to install.
+
+- The page runs the same `server.py` and the skill's four scripts in your browser, through
+  [Pyodide](https://pyodide.org) (Python compiled to WebAssembly, bundled in `docs/pyodide/`, MPL-2.0).
+- It opens the `demo-matcha` project. Quick sim, pricing, numbers and the verdict all come from the real scripts.
+- What needs the local app: AI buyers (they call a language model), and saving. Edits in the online demo are lost on reload.
+- First load downloads about 14 MB (the Python runtime), then the browser caches it.
+- Rebuild after changing the app: `python scripts/build_pages.py --pyodide path/to/pyodide-0.27.7.tgz`
+  (without `--pyodide` it downloads the Pyodide release from npm). GitHub Pages serves `main:/docs`.
+
 ## Run
 
 Python 3.9+ standard library only. three.js r160 is bundled in `vendor/`, so there is no install step and no CDN.
@@ -88,26 +100,27 @@ real buyers. That is why the studio labels everything and keeps real-world tests
 - AI runs cost tokens. 20 buyers is about 20 calls.
 - In background tabs, browsers throttle animation. Bots snap to their final spot when the run ends.
 
-## Design pass (/hone, Nov 2026)
+## Design pass (/hone + /design, Nov 2026)
 
 Judged by a 3-model council against a frozen rubric, with code-checked gates (A1-A8) the judges cannot override.
-Scored on six screenshots: idle, mid-run and finished, at 1280 px and 390 px.
-Result: **6.65 -> 8.08 (3 judges, mean of 2 scoring runs), all gates passing, API tests passing.** Target is 8.5, so this
-is not "done" yet. An earlier 8.43 came from only 2 judges (the vision judge was failing on image size); with all 3 judges
-that version re-scores 7.6, and round 11 beat it.
+Scored on six screenshots: idle, mid-run and finished, at 1280 px and 390 px. Each score is the mean of two scoring runs.
 
-- Rounds 1-2 (earlier pass): favicon/title, 12 px floor, contrast, phone layout with 44 px targets, Next-test card,
-  arena kept clear.
-- Round 5: decided buyers stand in a tidy grid inside BUY/PASS with a green/red ring each; names show only while
-  walking or thinking (or when selected); a live line under the arena shows the newest decision and, at the end,
-  "N of 20 would buy - below your 25% target" with a See results button; results open with that headline;
-  Skip to results (also `?skip=1`); optional setup fields are collapsed.
-- Round 6: short stall title that never hides behind the counters; the honesty badges no longer overlap the buy-rate card.
-- Round 7: name labels never cover the stall sign, a stronger thinking ring, more space in the piles, the three modes
-  explained under How it works, and a `?` button to reopen the arena tip.
+**Result: 7.6 -> 7.98 under today's judges (r11, the earlier best, re-scores 7.84), all gates passing, API tests passing,
+slop check clean. Target 8.5 was not reached.** Two scoring runs on the same screenshots differ by up to 0.6, and the last
+rounds moved the score by less than that, so the remaining asks are listed below rather than claimed as fixed.
 
-- Round 11: the Buyers section starts collapsed with a one-line summary; the badge says "rule-based, not AI"; the final
-  line names the top reason to pass; roomier BUY/PASS zones; the phone legend sits inside the arena; a phone Setup button.
+Look: one Graphite theme (chosen 3-0 over a ledger-style and a paper-style direction in a judged bracket), plain blue
+accent `#2563eb`, no emoji, no purple. See `design.md` for the palette, type, spacing and banned defaults.
 
-Still open (from the judges): telling individual buyers apart inside a full pile, a shorter first-run setup form,
-and a less crowded phone layout (arena, feed and setup on one screen).
+- Arena: settled buyers drop their name tags (the BUY/PASS signs carry the counts); only the newest decision and the
+  selected buyer keep a name, and the matching row in Live decisions is outlined. Signs sit low enough that the HUD
+  never covers them.
+- HUD: every number states its source ("source: Quick sim"), the idle state reads "0/20 not started".
+- Setup: Product & price and Buyers collapse to one-line summaries once filled, so a first run shows the pitch and Run.
+- Results: the next test names the top doubt and only suggests a price change when the price is outside the simulated
+  acceptable range.
+- Reliability: plain-language errors instead of raw Windows messages; the server serialises writes and retries file
+  locks; `?skip=1` finishes without timers.
+
+Still open (from the judges): telling buyers apart inside a full pile without hovering, a calmer phone layout, and
+source lines inside the Pricing, Numbers and Verdict tabs.

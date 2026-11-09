@@ -1,0 +1,4 @@
+# Keep LF everywhere: CRLF in SKILL.md front matter hides a skill's description in some loaders.
+* text=auto eol=lf
+*.png binary
+*.jpg binary

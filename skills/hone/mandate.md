@@ -40,16 +40,17 @@ public, make it reversible first (backup, branch, tag or copy) and report it aft
 Hard limits (never, no exceptions): private data or secrets, accounts that are not the user's, spam, faking a
 check or result, deleting or weakening tests, invented features, facts or numbers.
 
-**Budget:** money = whatever the user set for this run; none set = free tools only. `over_budget` = the
-context is nearly full, the session time limit is reached, or the next step would spend money past the set
-budget. Handoff = `## Handoff` in the run log with Done / In progress / Left / exact next command. Out of
+**Budget:** money = whatever the user set for this run; none set = free tools only. `over_budget` = any of:
+the host warns that context or session time is running out; the context was already compacted once and the
+remaining queue will not fit; or the next step would spend money past the set budget. Handoff = `## Handoff` in the run log with Done / In progress / Left / exact next command. Out of
 budget is the only run-level stop: end the whole run with that handoff, never a question.
 
 ## Stopping: always say why
 
-The first line of the final message is exactly one of:
+The first line of the final message is exactly one of (`blocked` and `needs you` only once every other
+queue item is finished; they are end states, never early exits):
 - `Stopped: all done, queue empty.`
-- `Stopped: session limit (context / time / tokens), not finished.` Write the handoff so the next run
+- `Stopped: session limit (context / time / tokens), not finished.` (the `over_budget` stop) Write the handoff so the next run
   continues there. Never call it done.
 - `Stopped: blocked on <X>.` List the 3 approaches tried and what would unblock it.
 - `Stopped: needs you for <X>.` Only when a step needs something the AI cannot produce or reach: a physical

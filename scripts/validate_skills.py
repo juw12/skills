@@ -1,7 +1,7 @@
 """Repository checks for the skills collection. Exit code 1 on any failure.
 
 1. Every skills/<name>/SKILL.md starts with front matter that has name and description.
-2. The refine-loop skill passes its own objective checker (check_skill.py).
+2. The refine-loop and hone skills pass their own objective checkers (check_skill.py).
 3. Shared helper scripts copied into several skills (so each installs standalone)
    are byte-identical, so a fix in one copy cannot silently miss the others.
 4. Every Python file compiles.
@@ -47,6 +47,21 @@ def check_refine_loop(errors):
         errors.append("refine-loop/SKILL.md fails its own check_skill.py:\n" + result.stdout[-1500:])
 
 
+
+def check_hone(errors):
+    checker = SKILLS / "hone" / "check_skill.py"
+    skill = SKILLS / "hone" / "SKILL.md"
+    if not checker.exists():
+        return
+    result = subprocess.run([sys.executable, str(checker), str(skill)], capture_output=True, text=True)
+    if result.returncode != 0:
+        errors.append("hone/SKILL.md fails its own check_skill.py:\n" + result.stdout[-1500:])
+    mandate = (SKILLS / "hone" / "mandate.md").read_text(encoding="utf-8")
+    for marker in ("Stopped: all done", "Stopped: session limit", "Stopped: blocked", "Stopped: needs you"):
+        if marker not in mandate:
+            errors.append(f"hone/mandate.md is missing the stop reason '{marker}'")
+
+
 def check_shared_copies(errors):
     by_name = defaultdict(list)
     for path in SKILLS.glob("*/scripts/*.py"):
@@ -74,6 +89,7 @@ def main():
     errors = []
     count = check_front_matter(errors)
     check_refine_loop(errors)
+    check_hone(errors)
     check_shared_copies(errors)
     check_compiles(errors)
     if errors:

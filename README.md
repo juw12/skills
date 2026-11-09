@@ -8,7 +8,8 @@ The common thread: agents that **verify instead of claiming**. They run the chec
 
 | Skill | What it does |
 |---|---|
-| [`refine-loop`](skills/refine-loop/SKILL.md) | Improve-until-done without babysitting: frozen rubric, baseline score, separate judge, keep-best, blind A/B anti-inflation check and hard stop rules. Includes an objective self-checker. |
+| [`hone`](skills/hone/SKILL.md) | `/hone`: improve-until-done with full autonomy. The agent owns the task like a senior expert (no approval questions, no excuses, 3 genuinely different approaches before "blocked"), runs a frozen-rubric loop with a separate judge, keep-best and blind pairwise checks, works a run queue until it is empty, and starts every final message with `Stopped: <reason>`. Successor of `refine-loop`. |
+| [`refine-loop`](skills/refine-loop/SKILL.md) | The original loop, kept for agents that should ask before acting. Improve-until-done without babysitting: frozen rubric, baseline score, separate judge, keep-best, blind A/B anti-inflation check and hard stop rules. Includes an objective self-checker. |
 | [`ambitious-founder`](skills/ambitious-founder/SKILL.md) | `/be-ambitious` + `/founder` in one. Raises any task (goal beyond the goal, expert-grade depth, outside judge, copy-ready rewritten prompt) and pressure-tests a business or product idea: 4-lens board (incl. a Make lens for hardware), simulated buyer panel, Van Westendorp pricing and unit economics, ending in a verdict computed by a script. Combines RoboNuggets' be-ambitious and Jake Schincariol's founder-skill (both MIT). |
 | [`harness`](skills/harness/SKILL.md) | Finds and actually **runs** a project's build/test/lint commands and reports pass/fail truthfully. |
 | [`heartbeat`](skills/heartbeat/SKILL.md) | A short, honest status of running jobs and services (servers, watchdogs, long tasks) that flags stalls. |
@@ -56,6 +57,7 @@ Copy any folder from `skills/` into your tool's skills folder:
 | [SkillMouse](https://github.com/juw12/skillmouse) | **Settings > Sources > Add folder** and pick `skills/`, to run them with any model from your mouse |
 
 Check `refine-loop` against its own rubric: `python skills/refine-loop/check_skill.py skills/refine-loop/SKILL.md`
+(and `hone`: `python skills/hone/check_skill.py skills/hone/SKILL.md`).
 
 ## License
 

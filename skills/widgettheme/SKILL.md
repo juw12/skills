@@ -1,9 +1,9 @@
 ---
 name: widgettheme
-description: Apply "The Morning Paper" — the user's personal light newspaper/editorial design system (cream paper backgrounds, ink-black text, deep newspaper-red accent #8b1a1a, Georgia serif type, thin hairline rules) taken from their productivity-widget and productivity-diary apps. Use this skill whenever the user says "widget theme", "follow the widget theme", "match the widget theme", "use my theme", "make it look like my widget/diary", "morning paper theme", or invokes /widgettheme — for ANY UI, web page, app, dashboard, poster, or artifact that should match their signature look. Also trigger when the user asks to restyle or theme something to be consistent with their personal productivity widget/diary even if they never say the word "widget".
+description: Apply "Morrow" (formerly "The Morning Paper") — the user's personal light newspaper/editorial design system (cream paper backgrounds, ink-black text, deep newspaper-red accent #8b1a1a, Georgia serif type, thin hairline rules) taken from their productivity-widget and productivity-diary apps. Use this skill whenever the user says "widget theme", "follow the widget theme", "match the widget theme", "use my theme", "make it look like my widget/diary", "morrow theme", "morning paper theme", or invokes /widgettheme — for ANY UI, web page, app, dashboard, poster, or artifact that should match their signature look. Also trigger when the user asks to restyle or theme something to be consistent with their personal productivity widget/diary even if they never say the word "widget".
 ---
 
-# The Morning Paper — the widget theme
+# Morrow — the widget theme
 
 This is the user's personal design language: a warm, light **newspaper / editorial** aesthetic. It comes from their own apps (`productivity-widget` = a Tkinter desktop widget; `productivity-diary` = a deployed web app), so applying it keeps their projects visually consistent.
 
@@ -97,4 +97,4 @@ Keep the identity (serif, red accent, rules) but invert surfaces:
 
 ## Source of truth (for traceability)
 
-- Palette and fonts come from the author's Morning Paper apps ([juw12/morning-paper-web](https://github.com/juw12/morning-paper-web)): the widget's `THEME` dict and the web version's `:root` CSS tokens. `assets/theme.css` in this skill is the portable copy.
+- Palette and fonts come from the author's Morrow apps ([juw12/morrow](https://github.com/juw12/morrow)): the widget's `THEME` dict and the web version's `:root` CSS tokens. `assets/theme.css` in this skill is the portable copy.

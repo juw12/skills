@@ -16,7 +16,7 @@ The common thread: agents that **verify instead of claiming**. They run the chec
 | [`delegator`](skills/delegator/SKILL.md) | Breaks a goal into small tasks, routes each to the best agent or skill, then combines the results. |
 | [`soul`](skills/soul/SKILL.md) | Reviews drafts, docs and UI copy against a project's voice and principles, with minimal fixes. |
 | [`memory-management`](skills/memory-management/SKILL.md) | Durable project memory (decisions, lessons, context) in an Obsidian vault, so it survives across sessions. |
-| [`widgettheme`](skills/widgettheme/SKILL.md) | Applies "The Morning Paper" editorial design system (cream paper, ink black, newspaper red, serif headlines). |
+| [`widgettheme`](skills/widgettheme/SKILL.md) | Applies the "Morrow" editorial design system (cream paper, ink black, newspaper red, serif headlines). |
 
 ## Design skills
 

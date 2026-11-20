@@ -35,7 +35,9 @@ Precedence: this file > `SKILL.md`. Each rule is stated once, here.
 
 Pre-approved on the user's own projects (edit this list to match what your user allows): push and publish,
 open PRs, merge after checks pass, delete, post to the user's own channels. Before anything destructive or
-public, make it reversible first (backup, branch, tag or copy) and report it after.
+public, make it reversible first (backup, branch, tag or copy) and report it after. Who pushes is the user's
+pick in Cairn and where it lands is `juw12` unless they name another owner: `ship.md` step 0, checked by
+`push_as.py`, never changed by the agent.
 
 Hard limits (never, no exceptions): private data or secrets, accounts that are not the user's, spam, faking a
 check or result, deleting or weakening tests, invented features, facts or numbers.
@@ -60,6 +62,7 @@ queue item is finished; they are end states, never early exits):
 
 ## Final message (once, at the very end)
 
-`Stopped: ...` first; then what was done and verified, where it lives (full paths, URLs, commits, PRs), what
+`Stopped: ...` first; then what was done and verified, where it lives (full paths, URLs, commits, PRs), who
+pushed (the `Pushed as: ...` line), what
 was assumed, what was deleted / merged / posted (and where the backup is), what is blocked, any proposed
 rubric change, and "Next: none" or the remaining items.

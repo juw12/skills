@@ -1,4 +1,4 @@
-"""Objective checker for the refine-loop skill.
+"""Objective checker for the hone skill (grown from refine-loop's).
 
 Hard gates are plain text checks, so no AI opinion is involved.
 Usage: python check_skill.py <file.md> [more files...]
@@ -23,6 +23,9 @@ GATES = {
     "safety boundary for autonomy": r"(?i)safety boundary",
     "honest final report (no 'perfect' claim)": r"(?i)never claim",
     "judge prompt template": r"(?i)judge prompt template",
+    "ships to every surface (ship.md)": r"ship\.md",
+    "push account read from Cairn, never switched": r"(?i)push_as\.py[^\n]*\n[^\n]*never switch",
+    "Featured arranged from evidence": r"featured\.py",
 }
 
 MAX_WORDS = 1000

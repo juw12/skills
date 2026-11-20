@@ -1,7 +1,8 @@
 """Repository checks for the skills collection. Exit code 1 on any failure.
 
 1. Every skills/<name>/SKILL.md starts with front matter that has name and description.
-2. The refine-loop and hone skills pass their own objective checkers (check_skill.py).
+2. The refine-loop and hone skills pass their own objective checkers (check_skill.py); hone's ship step
+   names all five surfaces and its two helpers pass their offline selftests.
 3. Shared helper scripts copied into several skills (so each installs standalone)
    are byte-identical, so a fix in one copy cannot silently miss the others.
 4. Every Python file compiles.
@@ -60,6 +61,14 @@ def check_hone(errors):
     for marker in ("Stopped: all done", "Stopped: session limit", "Stopped: blocked", "Stopped: needs you"):
         if marker not in mandate:
             errors.append(f"hone/mandate.md is missing the stop reason '{marker}'")
+    ship = (SKILLS / "hone" / "ship.md").read_text(encoding="utf-8")
+    for surface in ("**GitHub**", "**Profile**", "**Portfolio**", "**Obsidian**", "**Cairn**", "## Featured"):
+        if surface not in ship:
+            errors.append(f"hone/ship.md is missing '{surface}'")
+    for helper in ("push_as.py", "featured.py"):
+        result = subprocess.run([sys.executable, str(SKILLS / "hone" / helper), "--selftest"], capture_output=True, text=True)
+        if result.returncode != 0:
+            errors.append(f"hone/{helper} fails its selftest:\n" + (result.stdout + result.stderr)[-1500:])
 
 
 def check_shared_copies(errors):

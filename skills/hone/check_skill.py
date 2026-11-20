@@ -26,6 +26,7 @@ GATES = {
     "ships to every surface (ship.md)": r"ship\.md",
     "push account read from Cairn, never switched": r"(?i)push_as\.py[^\n]*\n[^\n]*never switch",
     "Featured arranged from evidence": r"featured\.py",
+    "four versions gate (Windows, Mac, iPhone, Android)": r"platforms\.py[^\n]*\n[^\n]*(?i:iphone)",
 }
 
 MAX_WORDS = 1000

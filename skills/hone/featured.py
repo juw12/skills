@@ -25,6 +25,7 @@ import math
 import os
 import re
 import shutil
+import ssl
 import subprocess
 import sys
 import urllib.error
@@ -248,13 +249,37 @@ def release_facts(releases: list | None, project: dict) -> tuple[int | None, int
     return len(releases), sum(release[1] for release in releases)
 
 
-def answers(url: str) -> bool:
-    request = urllib.request.Request(url, headers={"User-Agent": "hone-featured"})
+def web_get(url: str, agent: str = "hone") -> tuple[str, str | None]:
+    """(address after redirects, page text), or (url, None) when the page does not answer.
+
+    A Python without a certificate store (the python.org builds on a Mac) can verify no site at all, which
+    is not the site's fault: then the system's curl, which has one, asks instead."""
+    request = urllib.request.Request(url, headers={"User-Agent": agent})
     try:
         with urllib.request.urlopen(request, timeout=20) as response:
-            return 200 <= response.status < 400
-    except (urllib.error.URLError, OSError, ValueError):
-        return False
+            return response.geturl(), response.read(2_000_000).decode("utf-8", "replace")
+    except urllib.error.HTTPError:
+        return url, None
+    except urllib.error.URLError as error:
+        if not isinstance(error.reason, ssl.SSLCertVerificationError):
+            return url, None
+    except (OSError, ValueError):
+        return url, None
+    curl = shutil.which("curl")
+    if not curl:
+        return url, None
+    try:
+        result = subprocess.run([curl, "-sL", "--fail", "--max-time", "20", "-A", agent, "-w", "\n%{url_effective}", url], capture_output=True, timeout=30)
+    except (OSError, subprocess.TimeoutExpired):
+        return url, None
+    if result.returncode != 0:
+        return url, None
+    body, _, final_url = result.stdout.decode("utf-8", "replace").rpartition("\n")
+    return final_url.strip() or url, body
+
+
+def answers(url: str) -> bool:
+    return web_get(url)[1] is not None
 
 
 def project_facts(project: dict, shared: dict, cairn_rank: dict, now: dt.datetime) -> dict:

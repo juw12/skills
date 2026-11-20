@@ -2,7 +2,7 @@
 
 1. Every skills/<name>/SKILL.md starts with front matter that has name and description.
 2. The refine-loop and hone skills pass their own objective checkers (check_skill.py); hone's ship step
-   names all five surfaces and its two helpers pass their offline selftests.
+   names all five surfaces and the four versions, and its three helpers pass their offline selftests.
 3. Shared helper scripts copied into several skills (so each installs standalone)
    are byte-identical, so a fix in one copy cannot silently miss the others.
 4. Every Python file compiles.
@@ -62,10 +62,10 @@ def check_hone(errors):
         if marker not in mandate:
             errors.append(f"hone/mandate.md is missing the stop reason '{marker}'")
     ship = (SKILLS / "hone" / "ship.md").read_text(encoding="utf-8")
-    for surface in ("**GitHub**", "**Profile**", "**Portfolio**", "**Obsidian**", "**Cairn**", "## Featured"):
+    for surface in ("**GitHub**", "**Profile**", "**Portfolio**", "**Obsidian**", "**Cairn**", "## Featured", "## Four versions", "**Windows**", "**Mac**", "**Android**", "**iPhone**"):
         if surface not in ship:
             errors.append(f"hone/ship.md is missing '{surface}'")
-    for helper in ("push_as.py", "featured.py"):
+    for helper in ("push_as.py", "featured.py", "platforms.py"):
         result = subprocess.run([sys.executable, str(SKILLS / "hone" / helper), "--selftest"], capture_output=True, text=True)
         if result.returncode != 0:
             errors.append(f"hone/{helper} fails its selftest:\n" + (result.stdout + result.stderr)[-1500:])

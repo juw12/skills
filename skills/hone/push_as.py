@@ -127,8 +127,11 @@ def repo_rights(run, slug: str) -> dict | None:
 
 
 def author_is_new(run, cwd: str) -> str:
-    """The commit address set for this clone when no commit in its history carries it yet, else ""."""
+    """The commit address set for this clone when no commit in its history carries it yet, else "".
+    GitHub's own noreply addresses are never new in that sense: they give nothing away."""
     _, email, _ = run(["git", "config", "user.email"], cwd=cwd)
+    if email.strip().lower().endswith("@users.noreply.github.com"):
+        return ""
     code, history, _ = run(["git", "log", "--all", "--format=%ae"], cwd=cwd)
     seen = {line.strip().lower() for line in history.splitlines() if line.strip()}
     return email.strip() if code == 0 and seen and email.strip() and email.strip().lower() not in seen else ""
@@ -289,6 +292,10 @@ def selftest() -> int:
     expect("an address this public repo has never shown stops the push", "private@example.com" in " ".join(check(fake, ".")["problems"]))
     world["repos"]["juw12/app"]["private"] = True
     expect("...but not in a private repo", check(fake, ".")["ok"])
+    world["repos"]["juw12/app"]["private"] = False
+    world["email"] = "1+other@users.noreply.github.com"
+    expect("...and a GitHub noreply address is never held back", check(fake, ".")["ok"])
+    world["email"] = "me@users.noreply.github.com"
     world["origin"] = "git@github.com:juw12/app.git"
     reading = check(fake, ".")
     expect("an SSH origin is reported as not Cairn's switch", reading["pusher"] == "" and reading["notes"] and "SSH key" in reading["line"])

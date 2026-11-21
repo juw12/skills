@@ -201,10 +201,14 @@ def wanted_pins(decision: dict, pinned: list[str] | tuple = ()) -> list[str]:
 
 # ---------------------------------------------------------------- the facts (GitHub, read only)
 
+def gh_program() -> str:
+    """The GitHub CLI, also when an agent's shell has a shorter PATH than the user's terminal."""
+    return shutil.which("gh") or next((place for place in GH_PLACES if Path(place).exists()), "gh")
+
+
 def gh(*args: str) -> tuple[int, str]:
-    program = shutil.which("gh") or next((place for place in GH_PLACES if Path(place).exists()), "gh")
     try:
-        result = subprocess.run([program, "api", *args], capture_output=True, text=True, timeout=60, env={**os.environ, "GH_PROMPT_DISABLED": "1"})
+        result = subprocess.run([gh_program(), "api", *args], capture_output=True, text=True, timeout=60, env={**os.environ, "GH_PROMPT_DISABLED": "1"})
     except (OSError, subprocess.TimeoutExpired):
         return 127, ""
     return result.returncode, result.stdout
@@ -250,7 +254,8 @@ def release_facts(releases: list | None, project: dict) -> tuple[int | None, int
 
 
 def web_get(url: str, agent: str = "hone") -> tuple[str, str | None]:
-    """(address after redirects, page text), or (url, None) when the page does not answer.
+    """(address after redirects, page text), or (url, None) when the page does not answer. At most the
+    first 2 MB are read, so asking whether a 200 MB download is there does not fetch it.
 
     A Python without a certificate store (the python.org builds on a Mac) can verify no site at all, which
     is not the site's fault: then the system's curl, which has one, asks instead."""
@@ -269,7 +274,7 @@ def web_get(url: str, agent: str = "hone") -> tuple[str, str | None]:
     if not curl:
         return url, None
     try:
-        result = subprocess.run([curl, "-sL", "--fail", "--max-time", "20", "-A", agent, "-w", "\n%{url_effective}", url], capture_output=True, timeout=30)
+        result = subprocess.run([curl, "-sL", "--fail", "--max-time", "20", "--range", "0-1999999", "-A", agent, "-w", "\n%{url_effective}", url], capture_output=True, timeout=30)
     except (OSError, subprocess.TimeoutExpired):
         return url, None
     if result.returncode != 0:

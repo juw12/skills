@@ -1,0 +1,7 @@
+juw12/cfd-wave-schemes            # Fortran and Python studies of two numerical schemes: nothing a person installs
+juw12/projects/outputs/3d-models  # STL and STEP model files
+juw12/agent-lessons               # a collection of lessons as Markdown and JSONL
+juw12/themes                      # CSS and JSON theme files with a gallery page
+juw12/trunnion-topopt             # a design study: models, FE results and their write-up
+juw12/state-of-mcp-servers        # a published report and its data
+juw12/skills                      # Markdown skills and helper scripts for agents

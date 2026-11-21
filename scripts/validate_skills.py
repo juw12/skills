@@ -62,7 +62,7 @@ def check_hone(errors):
         if marker not in mandate:
             errors.append(f"hone/mandate.md is missing the stop reason '{marker}'")
     ship = (SKILLS / "hone" / "ship.md").read_text(encoding="utf-8")
-    for surface in ("**GitHub**", "**Profile**", "**Portfolio**", "**Obsidian**", "**Cairn**", "## Featured", "## Four versions", "**Windows**", "**Mac**", "**Android**", "**iPhone**"):
+    for surface in ("**GitHub**", "**Profile**", "**Portfolio**", "**Obsidian**", "**Cairn**", "## Featured", "## Four versions", "**Windows**", "**Mac**", "**Android**", "**iPhone**", "**Published is not run.**", "no_app.txt"):
         if surface not in ship:
             errors.append(f"hone/ship.md is missing '{surface}'")
     for helper in ("push_as.py", "featured.py", "platforms.py"):

@@ -74,6 +74,13 @@ the two, not a matter of opinion.
   the landing page does not count, and neither does a feature the project does not have.
 - Name release files like the others (`<Name>-Windows-Setup.exe`, `<Name>-macOS.dmg`, `<Name>-android.apk`,
   `SHA256SUMS.txt`) so the gate and people recognise them. An unsigned build says so, with how to open it.
+- A project whose job is done by its web app, with no Windows or Mac version: `desktop_shell.py SPEC.json`
+  stamps the Jeda desktop shell for it (a native window around the live site, built and opened on Windows
+  and two Macs before anything is published). The top of the file lists what the spec names. Say in the
+  README what was not checked inside the window.
+- A Mac app made of a script that hands over to Python (or any other program) gets no menu-bar icon on
+  macOS 26. The program inside the `.app` has to be the one that runs: Cairn's `mac/launcher.c` loads
+  Python into its own process. Check a Mac app on a macOS 26 runner as well as on this Mac.
 - Private repos pay for runners: check `cairn vibe github` before adding Mac jobs (GitHub counts a Mac
   minute as ten).
 - **No app at all** (a study, a model library, a skills collection): `no_app.txt` is the list, one project

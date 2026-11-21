@@ -87,9 +87,10 @@ def ink_for(accent, paper):
 
 def app_accent(audit):
     brand = audit["results"][0]["probe"]["brand"]
-    for key in ("accent_var", "primary_bg", "theme_color"):
+    # theme-color before primary_bg: a pale page background (e.g. #e6efea) is not an accent.
+    for key in ("accent_var", "theme_color", "primary_bg"):
         value = hex_of(brand.get(key))
-        if value and not (min(rgb(value)) > 235 or max(rgb(value)) < 25):
+        if value and not (min(rgb(value)) > 235 or max(rgb(value)) < 25) and luminance(value) <= 0.6:
             return value, key
     return None, None
 

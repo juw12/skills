@@ -73,6 +73,8 @@ All of it is in `ship.md`; three parts are code, not judgement:
   (read it, never switch it) and the repo is under `juw12` unless the request names another owner.
 - `python featured.py <profile README> --write` arranges the profile's Featured cards by evidence and
   names any swap; `--check` is the gate.
+- An app's UI pass and its version history inside the app (gates A1 to A9, `check_versions.py`) are the
+  `design` skill; its landing page is the `project-landing` skill.
 
 ## Correctness belongs in gates
 

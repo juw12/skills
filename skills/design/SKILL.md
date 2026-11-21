@@ -16,6 +16,7 @@ Long steps (`report`, `test`, `finish`, full landing checks) can exceed 120 s: r
 |---|---|
 | `tools/design_cmd.py` | the command: `status`, `report`, `start`, `audit`, `compare`, `test`, `sync`, `finish`, `landing …` |
 | `tools/app_audit.py` | Playwright audit at 1280 + 390 px → gates A1–A8, screenshots, brand facts |
+| `tools/check_versions.py` | version-history gate A9: one `versions.json`, shown in the app, changelog in step |
 | `tools/brand.py` | app accent vs landing accent (ΔE), `--apply` writes landing overrides, `--gallery` adds live screenshots |
 | `state/apps.json` | per app: checkout, web root, tests, live URL, audits; set `repo`/`path`/`routes` here to override |
 | `workspace/<owner>__<repo>/` | app checkouts (sparse for `juw12/projects` and `juw12/portfolio` monorepos) |
@@ -53,7 +54,8 @@ on phone, 12 px floor for labels/counts, `theme-color` meta, missing alt text.
 After each batch: `D audit <app> --label after`, `D compare <app>`, look at both screenshots side by side
 (`image()`), keep changes that improve, revert those that don't. Stop when gates pass or no further gain.
 
-**4. Finish** — `D finish <app>` (add `--gallery` to put a live-app screenshot on the landing page):
+**4. Finish** — first run `check_versions.py` yourself (A9, Rules; `D finish` does not run it): exit 0.
+Then `D finish <app>` (add `--gallery` to put a live-app screenshot on the landing page):
 runs the app's tests (must pass) → after-audit → compare (aborts on any regression) → `brand --apply`
 (landing accent follows the app when ΔE > 12) → landing build + gates → commits app changes on branch
 `design/<app>-<date>` and the landing page locally. Show the user the before/after table and screenshots.
@@ -66,6 +68,23 @@ to confirm, and re-run `D sync <app> --apply --gallery` if you want the live scr
 ## Rules
 
 - Never push to an app's default branch directly; app changes go through a PR unless the user says merge.
+- **Version history** (every app; hard gate A9 from the first pass on): the user can see, inside the app, every
+  version and what changed in it.
+  - One source: `versions.json` in the web root: `{"releases": [{"build" or "version", "date", "title",
+    "changes": []}]}`, newest first. Nothing else lists versions by hand.
+  - Inside the app: a "Version history" dialog or page reachable from the normal UI (Settings or the footer; plus
+    the command palette if there is one). Newest entry open and marked as the running version, older ones
+    folded to one line each (build, date, title, number of changes). Works at 1280 and 390 px, and offline if
+    the app does (list the file in the service-worker shell).
+  - `CHANGELOG.md` is generated from the file by a script with `--check`; never edited by hand.
+  - Every PR that ships a change adds its entry in the same PR, with the PR number.
+  - A test in the app's own suite fails when the shipping build or version moves without a newest entry to match
+    (Cairn: newest `build` = the number in the service-worker cache name), so the list cannot fall behind.
+  - First pass: backfill from merged PRs and commit subjects, one entry per day or release. Never invent an entry;
+    say how far back it goes and what it was built from.
+  - Check: `python ~/.vector/skills/design/tools/check_versions.py <checkout> --build <now>`; must exit 0 before
+    `D finish`. Model to copy: Cairn PR #50 (`docs/versions.json`, `openVersions()` in `docs/actions.js`,
+    `scripts/make_changelog.py`, `tests/test_versions.py`).
 - Never touch `p/index.html`, `p/landing.json` or Buddy (project-landing's publish enforces this).
 - Facts only on the landing page; brand sync changes colours/screenshots, never claims.
 - A pass with no measurable improvement is not shipped (finish warns; say so instead of claiming success).

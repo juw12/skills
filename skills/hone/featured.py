@@ -208,7 +208,7 @@ def gh_program() -> str:
 
 def gh(*args: str) -> tuple[int, str]:
     try:
-        result = subprocess.run([gh_program(), "api", *args], capture_output=True, text=True, timeout=60, env={**os.environ, "GH_PROMPT_DISABLED": "1"})
+        result = subprocess.run([gh_program(), "api", *args], capture_output=True, encoding="utf-8", errors="replace", timeout=60, env={**os.environ, "GH_PROMPT_DISABLED": "1"})  # GitHub answers in UTF-8; Windows would read it as cp1252
     except (OSError, subprocess.TimeoutExpired):
         return 127, ""
     return result.returncode, result.stdout
@@ -422,6 +422,9 @@ def selftest() -> int:
 
 
 def main() -> int:
+    for stream in (sys.stdout, sys.stderr):  # a Windows console is not UTF-8 by itself: names such as 光耀同行 stop the print
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     parser.add_argument("readme", nargs="?", help="README.md in the clone of the profile repo")
     parser.add_argument("--write", action="store_true", help="reorder the Featured cards in the file")

@@ -80,6 +80,7 @@ OTHER_CHIP = {"x86_64": re.compile(r"arm64|aarch64|apple-?silicon", re.I), "arm6
 INSTALLER_RE = re.compile(r"setup|install|\.(msi|msix|pkg|cmd|bat|ps1|command)$", re.I)
 RUN_SECONDS = 12
 RUN_WORD = {"ok": "RAN    ", "failed": "FAIL   ", "unclear": "UNCLEAR", "skipped": "not run"}
+SCRIPT_ENDINGS = (".bat", ".cmd", ".ps1", ".sh", ".command")  # starters that need tools of their own: never run
 NO_APP_FILE = Path(__file__).resolve().parent / "no_app.txt"
 LEDGER_HEAD = (
     "---\ntitle: Platform runs\ntype: note\ntags: [platforms, hone]\n---\n# Platform runs\n\nWritten by `platforms.py --run` on this computer: one line per upload it started. "
@@ -351,6 +352,18 @@ def this_computer() -> str:
             return subprocess.run(["sysctl", "-n", "hw.model"], capture_output=True, text=True, timeout=10).stdout.strip() or computer.node()
         except (OSError, subprocess.TimeoutExpired):
             pass
+    if computer.system() == "Windows":
+        try:
+            import winreg
+
+            with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"HARDWARE\DESCRIPTION\System\BIOS") as key:
+                model = " ".join(str(winreg.QueryValueEx(key, "SystemProductName")[0]).split())
+            head, _, tail = model.rpartition("_")
+            model = head if tail and head.endswith(tail) else model  # "EXPERTBOOK P5405CSA_P5405CSA"
+            if model and model.lower() not in ("system product name", "to be filled by o.e.m.", "default string"):
+                return model
+        except (OSError, ImportError):
+            pass
     return computer.node() or "this computer"
 
 
@@ -382,8 +395,42 @@ def screen_locked() -> bool:
 
 def processes_under(folder: Path) -> list[int]:
     """Every process started from a file under `folder` (its real path: /tmp is /private/tmp on a Mac)."""
+    if computer.system() == "Windows":
+        return windows_processes_under(folder)
     out = subprocess.run(["pgrep", "-f", "^" + re.escape(str(folder.resolve()) + os.sep)], capture_output=True, text=True).stdout
     return [int(pid) for pid in out.split()]
+
+
+def windows_processes_under(folder: Path) -> list[int]:
+    """Windows has no pgrep: ask for every process whose program file sits under `folder`. A portable build
+    often starts a second program (a one-file build unpacks and starts itself again, an app starts helpers),
+    so the one that was started is not the only one to stop."""
+    script = "Get-CimInstance Win32_Process | Where-Object { $_.ExecutablePath -and $_.ExecutablePath.StartsWith($env:HONE_RUN_FOLDER, 'OrdinalIgnoreCase') } | ForEach-Object { $_.ProcessId }"
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-NonInteractive", "-Command", script], capture_output=True, text=True, timeout=60,
+            env={**os.environ, "HONE_RUN_FOLDER": str(folder.resolve()) + os.sep}, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+        ).stdout
+    except (OSError, subprocess.TimeoutExpired):
+        return []
+    return [int(pid) for pid in out.split() if pid.isdigit()]
+
+
+def stop_windows_tree(pid: int | None, folder: Path) -> None:
+    """Stop a started program with everything it started, then whatever still runs from `folder`. Without this
+    the helpers stay up, keep their files open and the temporary folder cannot be deleted."""
+    quiet = {"capture_output": True, "timeout": 30, "creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0)}
+    for _ in range(3):
+        targets = ([pid] if pid else []) + windows_processes_under(folder)
+        for target in dict.fromkeys(targets):
+            try:
+                subprocess.run(["taskkill", "/PID", str(target), "/T", "/F"], **quiet)
+            except (OSError, subprocess.TimeoutExpired):
+                pass
+        pid = None
+        time.sleep(1)
+        if not windows_processes_under(folder):
+            return
 
 
 def stop(pids: list[int]) -> None:
@@ -439,7 +486,14 @@ def open_mac_app(bundle: Path, seconds: int = RUN_SECONDS) -> tuple[str, str]:
 def start_and_stop(program: Path, log_folder: Path, seconds: int = RUN_SECONDS) -> tuple[str, str]:
     """Start a bare program, watch it, stop it. It ran when it is still up after `seconds`, or left with code 0."""
     log = log_folder / "hone-run.log"
-    options = {"creationflags": getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)} if computer.system() == "Windows" else {"start_new_session": True}
+    windows = computer.system() == "Windows"
+    if windows:
+        behind = subprocess.STARTUPINFO()
+        behind.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        behind.wShowWindow = 7  # SW_SHOWMINNOACTIVE: its window opens minimised and takes no keyboard focus
+        options = {"creationflags": subprocess.CREATE_NEW_PROCESS_GROUP, "startupinfo": behind}
+    else:
+        options = {"start_new_session": True}
     try:
         with log.open("wb") as output:
             process = subprocess.Popen([str(program)], stdout=output, stderr=subprocess.STDOUT, stdin=subprocess.DEVNULL, cwd=str(log_folder), **options)
@@ -449,15 +503,36 @@ def start_and_stop(program: Path, log_folder: Path, seconds: int = RUN_SECONDS) 
     while time.monotonic() < deadline and process.poll() is None:
         time.sleep(0.25)
     code = process.poll()
-    if code is None:
+    if windows:
+        handed_over = code is not None and bool(windows_processes_under(program.parent))
+        stop_windows_tree(process.pid if code is None else None, log_folder)
         try:
-            os.killpg(process.pid, signal.SIGTERM) if computer.system() != "Windows" else process.terminate()
+            process.wait(timeout=8)
+        except subprocess.TimeoutExpired:
+            process.kill()
+        if code is None:
+            return "ok", f"started and stayed up {seconds} s"
+        if handed_over:
+            return "ok", f"started, handed over to its own second program (code {code}), which was still up when stopped"
+    elif code is None:
+        try:
+            os.killpg(process.pid, signal.SIGTERM)
             process.wait(timeout=8)
         except (OSError, subprocess.TimeoutExpired):
             process.kill()
         return "ok", f"started and stayed up {seconds} s"
-    said = " ".join(log.read_text(encoding="utf-8", errors="replace").split())[-160:]
-    return ("ok", "started and left by itself with code 0") if code == 0 else ("failed", f"left with code {code}" + (f": {said}" if said else ""))
+    everything = " ".join(log.read_text(encoding="utf-8", errors="replace").split())
+    said = everything[-160:]
+    if code == 0:
+        return "ok", "started and left by itself with code 0"
+    if everything.lower().startswith("usage:"):  # a command-line tool asked for a command: ask it for its help instead
+        try:
+            helped = subprocess.run([str(program), "--help"], capture_output=True, stdin=subprocess.DEVNULL, cwd=str(log_folder), timeout=30).returncode
+        except (OSError, subprocess.TimeoutExpired):
+            helped = None
+        if helped == 0:
+            return "ok", "a command-line tool: started without a command it prints its usage, and --help answered"
+    return "failed", f"left with code {code}" + (f": {said}" if said else "")
 
 
 def run_build(slug: str, tag: str, asset: list) -> tuple[str, str]:
@@ -488,7 +563,8 @@ def run_build(slug: str, tag: str, asset: list) -> tuple[str, str]:
                 if subprocess.run(["ditto", "-x", "-k", str(file), str(inside)], capture_output=True, timeout=300).returncode != 0:
                     return "failed", "the zip does not unpack"
             else:
-                zipfile.ZipFile(file).extractall(inside)
+                with zipfile.ZipFile(file) as archive:  # closed again: Windows cannot delete a file that is still open
+                    archive.extractall(inside)
         elif lower.endswith((".tar.gz", ".tgz")):
             with tarfile.open(file) as archive:
                 archive.extractall(inside)
@@ -497,6 +573,9 @@ def run_build(slug: str, tag: str, asset: list) -> tuple[str, str]:
             (inside / name).chmod(0o755)
         program = find_program(inside)
         if not program:
+            scripts = sorted(path.name for path in inside.rglob("*") if path.is_file() and path.suffix.lower() in SCRIPT_ENDINGS)
+            if scripts:
+                return "skipped", f"it holds scripts, not a program ({scripts[0]} needs its own tools installed): not started by a script"
             return "failed", "nothing to start was found inside it"
         if computer.system() != "Darwin":
             return start_and_stop(program, work)
@@ -516,6 +595,13 @@ def run_build(slug: str, tag: str, asset: list) -> tuple[str, str]:
         if mounted:
             subprocess.run(["hdiutil", "detach", "-force", str(mounted)], capture_output=True)
         shutil.rmtree(work, ignore_errors=True)
+        for _ in range(5):  # Windows: a file something still holds open for a few seconds after its program stopped
+            if not work.exists():
+                break
+            time.sleep(3)
+            shutil.rmtree(work, ignore_errors=True)
+        if work.exists():
+            print(f"  (left behind, delete by hand: {work})", file=sys.stderr, flush=True)
 
 
 def run_project(project: dict, result: dict, ledger: Path | None, which: set) -> list[str]:
@@ -670,6 +756,9 @@ def selftest() -> int:
 
 
 def main() -> int:
+    for stream in (sys.stdout, sys.stderr):  # a Windows console is not UTF-8 by itself: names such as 光耀同行 stop the print
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     parser.add_argument("profile", nargs="?", help="README.md of the profile repo: check every project it lists")
     parser.add_argument("--repo", help="one project: OWNER/REPO, or OWNER/REPO/path/in/the/monorepo")

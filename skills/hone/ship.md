@@ -53,16 +53,14 @@ the gate fails, and every gap it names is a run-queue item of this run.
 The gate also fails when the README does not name all four, when a download the README links is not there,
 and when a version was left behind (`OLD`: its newest build sits in an older release than the others).
 
-**Published is not run.** A version is done when a computer has started the upload that is published now:
+**The gate is that the four are there.** Starting them is not part of it. When the user asks whether a
+version really starts, `--run --ledger <vault>/devices/<this computer>/notes/platform-runs.md` starts what
+this computer can and writes one line per upload; `--need-run mac,iphone` then makes it part of the gate.
 
-- `python platforms.py ... --run --ledger <vault>/devices/<this computer>/notes/platform-runs.md` starts
-  what this computer can start (a Mac build on a Mac, a Windows build on Windows; for iPhone the page, icon,
-  start page and offline worker are fetched), for a few seconds each, and writes one line per upload.
-  Then `--need-run mac,iphone` (name what this computer can start) makes "published but not run" a gap.
-- A failed run is a bug of this run: fix it, or queue it with what the run said.
-- A version this computer cannot start goes to the computer that can, as a Cairn handoff with the exact
-  command. The final message then says `waiting for <computer>`, never "works". Android on a real phone or
-  emulator is `tether-android-qa`. The iPhone check uses no browser engine: say so.
+**Cairn shows the same four.** The repo's page in Cairn (`#/projects/<owner>/<repo>`, Look tab, *Versions*;
+an app of the monorepo: `.../look/apps/<name>`) reads the releases, the README and the web manifest by the
+same rules. After shipping, open it and see that it says what the gate says; a difference is a bug in one of
+the two, not a matter of opinion.
 
 **Building them:**
 

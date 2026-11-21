@@ -66,8 +66,8 @@ stop("max_rounds")                          # stop(reason) logs "stop: <reason>"
 All of it is in `ship.md`; three parts are code, not judgement:
 
 - `python platforms.py --repo juw12/<repo>`: every project has a Windows and a Mac download, an Android
-  APK and an iPhone home-screen web app, and `--run` starts what this computer can. A missing or unrun
-  one is a queue item, never a footnote.
+  APK and an iPhone home-screen web app, and Cairn's repo page shows the same four. A missing one is a
+  queue item, never a footnote.
 
 - `python push_as.py check --dir <clone>` before a push: the account is the one the user picked in Cairn
   (read it, never switch it) and the repo is under `juw12` unless the request names another owner.

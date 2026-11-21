@@ -136,6 +136,7 @@ def main():
     ap.add_argument("urls", nargs="+")
     ap.add_argument("--name", default="app")
     ap.add_argument("--wait", type=int, default=900)
+    ap.add_argument("--ready-js", default="", help="JS expression; after load, wait (up to 120 s) until it is true")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -151,8 +152,18 @@ def main():
                 errors.clear()
                 try:
                     page.goto(url, wait_until="networkidle", timeout=30000)
-                except Exception as exc:
-                    errors.append(f"navigation: {str(exc)[:120]}")
+                except Exception:
+                    # A busy machine can starve "networkidle"; retry once on the plain load event
+                    # so a slow harness is not reported as an app error (A1).
+                    try:
+                        page.goto(url, wait_until="load", timeout=60000)
+                    except Exception as exc:
+                        errors.append(f"navigation: {str(exc)[:120]}")
+                if args.ready_js:
+                    try:
+                        page.wait_for_function(args.ready_js, timeout=120000)
+                    except Exception as exc:
+                        errors.append(f"not ready: {str(exc)[:80]}")
                 page.wait_for_timeout(args.wait)
                 shot = out / f"{args.name}-{width}-{n}.png"
                 page.screenshot(path=str(shot))

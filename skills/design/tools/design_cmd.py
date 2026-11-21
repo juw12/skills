@@ -342,7 +342,13 @@ def cmd_report(args):
         out_dir = OUT / slug / "live"
         if out_dir.exists():
             shutil.rmtree(out_dir)
-        run([PY, TOOLS / "app_audit.py", out_dir, url, "--name", slug], check=False, quiet=True, timeout=180)
+        try:
+            run([PY, TOOLS / "app_audit.py", out_dir, url, "--name", slug], check=False, quiet=True, timeout=180)
+        except subprocess.TimeoutExpired:
+            # One slow site must not abort the whole report.
+            rows.append((slug, None, "audit timed out (180 s)"))
+            print(f"{slug:20} {'-':>5}  audit timed out (180 s)", flush=True)
+            continue
         report = load_json(out_dir / "audit.json", None)
         if not report:
             rows.append((slug, None, "audit failed"))

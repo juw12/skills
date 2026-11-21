@@ -58,7 +58,7 @@ def system_run(args: list[str], cwd: str | None = None, stdin: str | None = None
     env.pop("GITHUB_TOKEN", None)
     command = [find_gh(), *args[1:]] if args[0] == "gh" else args
     try:
-        result = subprocess.run(command, input=stdin, capture_output=True, text=True, timeout=30, env=env, cwd=cwd or str(Path.home()))
+        result = subprocess.run(command, input=stdin, capture_output=True, encoding="utf-8", errors="replace", timeout=30, env=env, cwd=cwd or str(Path.home()))
     except (OSError, subprocess.TimeoutExpired):
         return 127, "", ""
     return result.returncode, result.stdout, result.stderr

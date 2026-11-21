@@ -27,6 +27,7 @@ GATES = {
     "push account read from Cairn, never switched": r"(?i)push_as\.py[^\n]*\n[^\n]*never switch",
     "Featured arranged from evidence": r"featured\.py",
     "four versions gate (Windows, Mac, iPhone, Android)": r"platforms\.py[^\n]*\n[^\n]*(?i:iphone)",
+    "findable gate (search engines can find it)": r"findable\.py[^\n]*search engines",
 }
 
 MAX_WORDS = 1000

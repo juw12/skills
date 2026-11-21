@@ -1,6 +1,6 @@
 ---
 name: hone
-description: Improve-until-done with full autonomy. The agent owns the task like a senior expert - no approval questions, no excuses, no giving up - runs a frozen-rubric loop (baseline, separate judge, objective checks override the judge, keep-best, blind pairwise anti-inflation), works through a run queue until it is empty, gives a project its Windows, Mac, iPhone and Android versions, ships it to every place it shows up (GitHub, profile, portfolio, Obsidian, Cairn) and ends every run with "Stopped - <reason>". Use for /hone, "improve until perfect", "loop till 10/10", "finish everything, don't ask", or any artifact that should get better without babysitting.
+description: Improve-until-done with full autonomy. The agent owns the task like a senior expert - no approval questions, no excuses, no giving up - runs a frozen-rubric loop (baseline, separate judge, objective checks override the judge, keep-best, blind pairwise anti-inflation), works through a run queue until it is empty, gives a project its Windows, Mac, iPhone and Android versions, makes it findable in search engines, ships it to every place it shows up (GitHub, profile, portfolio, Obsidian, Cairn) and ends every run with "Stopped - <reason>". Use for /hone, "improve until perfect", "loop till 10/10", "finish everything, don't ask", or any artifact that should get better without babysitting.
 ---
 
 # /hone
@@ -21,8 +21,8 @@ fixes per gate, `DONE_SCORE = 8.5`.
 
 0. **Intent.** Restate the goal in one line, list hidden requirements (things the user asked for last time
    after a similar goal) as gates. Write the run queue (`mandate.md` rule 4); for a project it ends with
-   the four versions (Windows, Mac, iPhone, Android) and the five `ship.md` surfaces: GitHub, profile,
-   portfolio, Obsidian, Cairn.
+   the four versions (Windows, Mac, iPhone, Android), the findable gate and the five `ship.md` surfaces:
+   GitHub, profile, portfolio, Obsidian, Cairn.
 1. **Freeze the rubric** before generating: hard gates (tool-checked where possible), 3-5 weighted soft
    criteria anchored at 4, 7 and 10. The rubric is frozen; if it is wrong, finish under it and propose a v2
    in the final message.
@@ -67,8 +67,9 @@ All of it is in `ship.md`; three parts are code, not judgement:
 
 - `python platforms.py --repo juw12/<repo>`: every project has a Windows and a Mac download, an Android
   APK and an iPhone home-screen web app, and Cairn's repo page shows the same four. A missing one is a
-  queue item, never a footnote.
+  queue item.
 
+- `python findable.py --repo juw12/<repo>`: search engines can find it. A gap is a queue item.
 - `python push_as.py check --dir <clone>` before a push: the account is the one the user picked in Cairn
   (read it, never switch it) and the repo is under `juw12` unless the request names another owner.
 - `python featured.py <profile README> --write` arranges the profile's Featured cards by evidence and
@@ -79,8 +80,7 @@ All of it is in `ship.md`; three parts are code, not judgement:
 ## Correctness belongs in gates
 
 If a defect is objective (two rules contradict, a file path is missing, a test fails), make it a hard gate.
-Near the top of the scale the +0.3 keep rule can reject a real fix that judges score within noise; a gate
-decides it in one step.
+Near the top of the scale the +0.3 rule can reject a real fix; a gate decides it.
 
 ## Judge prompt template
 
@@ -108,8 +108,8 @@ judged by <model council | subagent | self>`. Never claim "perfect" or "10/10".
 
 ## Self-check
 
-`python check_skill.py SKILL.md` (gates for this file, including LF line endings: CRLF hides a skill's
-description in some loaders); `--selftest` on `push_as.py`, `featured.py` and `platforms.py`.
+`python check_skill.py SKILL.md` (this file's gates); `--selftest` on
+`push_as.py`, `featured.py`, `platforms.py` and `findable.py`.
 
 ## Anti-patterns
 

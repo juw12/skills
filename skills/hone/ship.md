@@ -1,8 +1,8 @@
 # Ship: every place the project shows up
 
 For an artifact that is one of the user's projects (it has, or gets, a repo). At intent time (`SKILL.md`
-step 0) add the four-versions gate and the five surfaces below to the end of the run queue; each is done
-only when its gate passes. A surface the run changed nothing on is ticked as `unchanged`, not skipped
+step 0) add the four-versions gate, the findable gate and the five surfaces below to the end of the run
+queue; each is done only when its gate passes. A surface the run changed nothing on is ticked as `unchanged`, not skipped
 silently. Facts only: every sentence and number written anywhere comes from the repo (`mandate.md` hard
 limits).
 
@@ -80,6 +80,32 @@ the two, not a matter of opinion.
   and its reason per line. It is the user's list. Propose an addition in the final message; never add a
   line to get a project past the gate.
 
+## Findable: a search engine can find it
+
+A standing gate for every project with a public page, asked for or not: `python findable.py --repo juw12/<repo>`
+(any other page: `--url <address>`, as often as needed). Exit 1 = the gate fails, and every `GAP` line is a
+run-queue item of this run. Run it last, after the pages this run changed are online.
+
+| The gate asks | What counts | Where the fix is |
+|---|---|---|
+| **Answers** | the site the repo names (its homepage on GitHub) and its landing page answer 200 | the project's Pages setup; a repo with a site but no homepage on GitHub gets one (`push_as.py check --needs settings`) |
+| **May be shown** | the page does not say `noindex` | the page's own `<head>`. A page meant to stay out of search (a private tool, a pairing page) is checked with `--private`, and in ReachPilot it is listed under `"not_for_search"` |
+| **Says what it is** | a `<title>` of at least 10 characters and a description of at least 25 | the page's own `<head>`: the name plus what the project does, in the words someone would search with who has never heard of it ("Cairn: an open-source second brain in your Git repo", never just "Cairn"). Facts from the repo only |
+| **Is listed** | a sitemap that the site's `robots.txt` names holds the page's address | the site's sitemap, never a hand-written list: ReachPilot's daily **Search** task writes `sitemap.xml` for the whole Pages site from every project's pages. `python findable.py` in the ReachPilot folder runs it now |
+
+- **ReachPilot is where it shows and where it keeps running.** Its Search page (Projects > Search) lists every
+  project page with what is in the way, whether the sitemap names it, when Bing and Yandex were told
+  (IndexNow, no account) and, once the Search Console bridge is connected, whether Google has it. After
+  shipping, a new page appears there with the next daily pass; nothing has to be registered.
+- **Told, not waited for.** A new or changed page is sent through IndexNow by that task. Google has no door
+  without the owner's sign-in: asking it to index a page (Search Console, *URL inspection*, *Request
+  indexing*) is done with a signed-in browser the run can drive, else it is the run's `needs you` with the
+  page's address.
+- **Never promise a place.** The gate removes the reasons a search engine could not find the page. Whether
+  and when it shows the page is its decision; the final message says what was checked, not "it ranks".
+- Links from other sites count for more than anything on the page. The listings and list pull requests a
+  project already has are ReachPilot's Promote page; this gate opens none.
+
 ## Featured (GitHub profile)
 
 `python featured.py <profile clone>/README.md --brain <vault> --write` (about a minute; it reads GitHub
@@ -98,4 +124,5 @@ answers, commits in total and in the last 30 days, stars, CI and Cairn's own ran
 
 ## Self-check
 
-`python push_as.py --selftest`, `python featured.py --selftest` and `python platforms.py --selftest` (offline).
+`python push_as.py --selftest`, `python featured.py --selftest`, `python platforms.py --selftest` and
+`python findable.py --selftest` (offline).

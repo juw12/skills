@@ -59,6 +59,41 @@ JEDA_STARTED = "!!(document.getElementById('topbar') && document.getElementById(
 JEDA_STARTED_SAYS = "the top bar the app draws when it starts"
 
 
+READ_PAGE = '''def read_page(window, script):
+    """The page's answer to `script`.
+
+    A page that forbids eval (Content-Security-Policy: script-src 'self') refuses pywebview's own
+    evaluate_js on a Mac, which wraps the script in eval. There the question is put to WebKit itself,
+    which the page's policy does not bind.
+    """
+    try:
+        return window.evaluate_js(script)
+    except Exception:
+        if sys.platform != "darwin":
+            raise
+    from PyObjCTools import AppHelper
+    from webview.platforms.cocoa import BrowserView
+
+    answer, done = {}, threading.Event()
+
+    def ask():
+        def finished(result, error):
+            answer["value"] = result
+            answer["error"] = None if error is None else str(error)
+            done.set()
+
+        BrowserView.instances[window.uid].webview.evaluateJavaScript_completionHandler_(script, finished)
+
+    AppHelper.callAfter(ask)
+    if not done.wait(20):
+        raise RuntimeError("the page did not answer")
+    if answer["error"]:
+        raise RuntimeError(answer["error"])
+    return answer["value"]
+
+
+'''
+
 def rename(text: str, spec: dict) -> str:
     """Every Jeda becomes the new app. The longer, exact strings go first."""
     lower_tagline = spec["tagline"][0].lower() + spec["tagline"][1:]
@@ -97,6 +132,11 @@ def stamp(spec: dict) -> list[str]:
             continue
         name = source.name.replace("jeda", spec["slug"])
         text = rename(source.read_text(encoding="utf-8"), spec)
+        if source.name == "jeda_app.py" and "def read_page(" not in text:
+            # until Jeda's own shell has it: the self-test can read a page that forbids eval
+            asked = "window.evaluate_js(PAGE_SCRIPT)"
+            assert asked in text and "\ndef main(" in text
+            text = text.replace(asked, "read_page(window, PAGE_SCRIPT)").replace("\ndef main(", "\n" + READ_PAGE + "def main(", 1)
         (desktop / name).write_text(text, encoding="utf-8", newline="\n")
         made.append(str((desktop / name).relative_to(target)))
     if spec.get("title"):

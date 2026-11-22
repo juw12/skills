@@ -78,6 +78,13 @@ the two, not a matter of opinion.
   stamps the Jeda desktop shell for it (a native window around the live site, built and opened on Windows
   and two Macs before anything is published). The top of the file lists what the spec names. Say in the
   README what was not checked inside the window.
+- The same project without an Android version: `android_shell.py SPEC.json` stamps the Cairn Android shell (a
+  full-screen window around the live site, built without Gradle, opened on an emulator before it is
+  published). The repository needs the two signing secrets first; the web-app shells share one key, kept in
+  the private `juw12/web-shells-signing` with the list of apps signed with it.
+- A window around a web page is a version only where the page does the project's job. Not where the page is
+  a demo of a program that runs on a PC, and not where the job needs something the window lacks (folder
+  access, the microphone on Android): say so and leave that version missing.
 - A Mac app made of a script that hands over to Python (or any other program) gets no menu-bar icon on
   macOS 26. The program inside the `.app` has to be the one that runs: Cairn's `mac/launcher.c` loads
   Python into its own process. Check a Mac app on a macOS 26 runner as well as on this Mac.

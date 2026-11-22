@@ -1,0 +1,57 @@
+{
+ "Nudge": {
+  "url": "https://juw12.github.io/nudge/"
+ },
+ "Hazel": {
+  "tagline": "One studio for shorts, sped-up edits and long videos"
+ },
+ "ReachPilot": {
+  "skip": "its job is done by a program on a PC; the page is a demo with made-up data"
+ },
+ "Retrace": {
+  "skip": "the full app runs on a computer (python app.py); the page is a demo of three recorded examples"
+ },
+ "Titip": {
+  "skip": "a PC serves it; the page is a demo with invented mail"
+ },
+ "Pips": {
+  "skip": "a desktop pet for Windows; a window around its web page is not that"
+ },
+ "Sortie": {
+  "skip": "it organises folders through the browser's folder access, which the Mac and Android windows do not have"
+ },
+ "Hexbane": {
+  "skip": "a scanner run from the command line and as a GitHub Action; no web app does its job"
+ },
+ "Steward": {
+  "skip": "a server that sits in front of a chatbot; the page is a demo"
+ },
+ "PocketDex": {
+  "skip": "Windows and Mac are there (shell/desktop); the stamped .apk froze the Android 14 emulator twice and was not published"
+ },
+ "Teman Sehat": {
+  "put": "apps/teman-sehat/shell"
+ },
+ "Undanu": {
+  "tagline": "Digital wedding invitations with a personal link for each guest"
+ },
+ "Kilat": {
+  "only": "android",
+  "site": "docs"
+ },
+ "Datum Bench": {
+  "only": "mac",
+  "put": "apps/me-rd-toolkit/shell",
+  "mac_note": "The three engineering sub-apps under R&D Apps run from local servers that only the Windows app starts, so they are not in it. "
+ },
+ "Lingua": {
+  "skip": "a Windows program for live Teams captions; its page alone is not that on a Mac or a phone"
+ },
+ "Fade": {
+  "only": "mac",
+  "put": "apps/fade/shell"
+ },
+ "Jepret": {
+  "skip": "it reads a camera card's folder; the Mac and Android windows have no folder access"
+ }
+}

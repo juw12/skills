@@ -173,7 +173,12 @@ def stamp(spec: dict, template: Path) -> list[str]:
     icon = android / "res" / "mipmap-xxxhdpi" / "ic_launcher.png"
     icon.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(spec["icon"], icon)
-    subprocess.run(["sips", "-z", "192", "192", str(icon)], check=True, capture_output=True)  # macOS's own tool
+    try:  # Pillow where it is installed (any system), macOS's own sips otherwise
+        from PIL import Image
+
+        Image.open(icon).convert("RGBA").resize((192, 192), Image.LANCZOS).save(icon)
+    except ImportError:
+        subprocess.run(["sips", "-z", "192", "192", str(icon)], check=True, capture_output=True)
     (android / "app.json").write_text(json.dumps({
         "name": spec["name"], "id": spec["id"], "url": spec["url"], "versionName": "1.0.0", "versionCode": 1,
         "minSdk": 24, "targetSdk": 34, "certSha256": spec["cert"],

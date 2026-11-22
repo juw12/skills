@@ -82,6 +82,11 @@ the two, not a matter of opinion.
   full-screen window around the live site, built without Gradle, opened on an emulator before it is
   published). The repository needs the two signing secrets first; the web-app shells share one key, kept in
   the private `juw12/web-shells-signing` with the list of apps signed with it.
+- Many projects at once: `web_shells.py survey PROFILE_README.md`, then `plan NAME ...` and `apply NAME ...`
+  read each project (page title, icon, colours, the check that says the app started), stamp both shells,
+  write the README's *Get it on your device* section, set the signing secrets and open the pull request.
+  It works on Windows and on a Mac. `web_shells_overrides.json` holds what a person decided about a
+  project: left alone and why, only Android, only a Mac window, another folder, another name.
 - A window around a web page is a version only where the page does the project's job. Not where the page is
   a demo of a program that runs on a PC, and not where the job needs something the window lacks (folder
   access, the microphone on Android): say so and leave that version missing.

@@ -137,6 +137,9 @@ def stamp(spec: dict) -> list[str]:
             asked = "window.evaluate_js(PAGE_SCRIPT)"
             assert asked in text and "\ndef main(" in text
             text = text.replace(asked, "read_page(window, PAGE_SCRIPT)").replace("\ndef main(", "\n" + READ_PAGE + "def main(", 1)
+        if source.name == "README.md":  # the workflow has this project's name for it, and its release tag
+            text = text.replace("workflows/apps.yml", "workflows/" + spec["workflow"])
+            text = text.replace("releases/tag/apps)", "releases/tag/%s)" % spec["tag"]).replace("[apps release]", "[%s release]" % spec["tag"])
         (desktop / name).write_text(text, encoding="utf-8", newline="\n")
         made.append(str((desktop / name).relative_to(target)))
     if spec.get("title"):

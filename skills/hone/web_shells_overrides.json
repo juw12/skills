@@ -96,5 +96,86 @@
  "Peers": {
   "put": "apps/peers/shell",
   "note": "stamped twice on one branch on 23 Nov 2026: first with only=mac, then with only=android (Peers has its own Windows app in apps/peers/desktop)"
+ },
+ "shiphub": {
+  "url": "https://juw12.github.io/shiphub/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "LaunchKit": {
+  "url": "https://juw12.github.io/launchkit/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "SkillMouse": {
+  "url": "https://juw12.github.io/skillmouse/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "tolstack": {
+  "url": "https://juw12.github.io/tolstack/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "kemudi": {
+  "url": "https://juw12.github.io/kemudi/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "precedent": {
+  "url": "https://juw12.github.io/precedent/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "Open Problems Lab": {
+  "url": "https://juw12.github.io/open-problems-lab/",
+  "site": "docs",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "Spry": {
+  "url": "https://juw12.github.io/spry/",
+  "site": "docs",
+  "only": "android",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (docs/): the README laid out for a phone. Its README says the Android app opens that guide and that the program itself runs on a computer. Windows and Mac have Spry's own builds."
+ },
+ "Lineup": {
+  "url": "https://juw12.github.io/lineup/",
+  "site": "docs",
+  "only": "android",
+  "note": "its page is an example score page; made on Juwen's word of 23 Nov 2026 ('continue do all till finish'). Stamped twice on one branch: only=mac, then only=android (Lineup has its own Windows download).",
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text"
+ },
+ "CPU Eco Toggle": {
+  "url": "https://juw12.github.io/cpu-eco-toggle/",
+  "site": "docs",
+  "note": "a Windows tray tool; the apps open its page. Made on Juwen's word of 23 Nov 2026 ('continue do all till finish').",
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text"
+ },
+ "Hearthwood": {
+  "url": "https://juw12.github.io/hearthwood/preview.html",
+  "site": "",
+  "note": "the apps are the HTML preview (the browser stand-in for the Unity prototype), which got touch controls on 23 Nov 2026 so it plays on a phone; there is no Unity build. Made on Juwen's word of 23 Nov 2026 ('continue do all till finish')."
+ },
+ "Titian": {
+  "url": "https://juw12.github.io/projects/titian/",
+  "site": "respark/guide",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (the guide/ folder, copied to the monorepo's site by the 'guides' list in scripts/apps.json): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "KiniBuka": {
+  "url": "https://juw12.github.io/projects/kinibuka/",
+  "site": "apps/kinibuka/guide",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (the guide/ folder, copied to the monorepo's site by the 'guides' list in scripts/apps.json): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "Push Lab": {
+  "url": "https://juw12.github.io/projects/pushlab/",
+  "site": "apps/pushlab/guide",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (the guide/ folder, copied to the monorepo's site by the 'guides' list in scripts/apps.json): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "E-coder": {
+  "url": "https://juw12.github.io/projects/e-coder/",
+  "site": "agents-lab/E-coder/guide",
+  "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (the guide/ folder, copied to the monorepo's site by the 'guides' list in scripts/apps.json): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
  }
 }

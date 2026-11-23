@@ -41,7 +41,7 @@
   "was_skipped": "Windows and Mac are there (shell/desktop); the stamped .apk froze the Android 14 emulator twice and was not published",
   "only": "android",
   "put": "shell",
-  "made_anyway": "Juwen, 23 Nov 2026: 'continue for without ones till done'. The emulator has no graphics card and froze on the 3D meadow, so the check switches WebGL off in the emulator's WebView (webview-command-line) and the page shows its own fallback. Its README says so."
+  "made_anyway": "Juwen, 23 Nov 2026: 'continue for without ones till done'. It was not the app: with -gpu swiftshader_indirect the emulator process itself died about 5 s after the page opened (three runs, also with 4 GB and 4 cores). With -gpu swangle_indirect in shell's android.yml the app installs, opens and stays up, with the page as it is."
  },
  "Teman Sehat": {
   "put": "apps/teman-sehat/shell"

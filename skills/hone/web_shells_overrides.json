@@ -6,25 +6,34 @@
   "tagline": "One studio for shorts, sped-up edits and long videos"
  },
  "ReachPilot": {
-  "skip": "its job is done by a program on a PC; the page is a demo with made-up data"
+  "was_skipped": "its job is done by a program on a PC; the page is a demo with made-up data",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "Retrace": {
-  "skip": "the full app runs on a computer (python app.py); the page is a demo of three recorded examples"
+  "was_skipped": "the full app runs on a computer (python app.py); the page is a demo of three recorded examples",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "Titip": {
-  "skip": "a PC serves it; the page is a demo with invented mail"
+  "was_skipped": "a PC serves it; the page is a demo with invented mail",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "Pips": {
-  "skip": "a desktop pet for Windows; a window around its web page is not that"
+  "was_skipped": "a desktop pet for Windows; a window around its web page is not that",
+  "tagline": "Pomodoro widget with animated animals, skill battles and minigames",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "Sortie": {
   "skip": "it organises folders through the browser's folder access, which the Mac and Android windows do not have"
  },
  "Hexbane": {
-  "skip": "a scanner run from the command line and as a GitHub Action; no web app does its job"
+  "was_skipped": "a scanner run from the command line and as a GitHub Action; no web app does its job",
+  "site": "web",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "Steward": {
-  "skip": "a server that sits in front of a chatbot; the page is a demo"
+  "was_skipped": "a server that sits in front of a chatbot; the page is a demo",
+  "site": "apps/playground/web",
+  "made_anyway": "Juwen, 23 Nov 2026: 'u can make one its fine'. Its README says the apps open the project's page, and what that page is."
  },
  "PocketDex": {
   "skip": "Windows and Mac are there (shell/desktop); the stamped .apk froze the Android 14 emulator twice and was not published"
@@ -53,5 +62,24 @@
  },
  "Jepret": {
   "skip": "it reads a camera card's folder; the Mac and Android windows have no folder access"
+ },
+ "Vector Relay": {
+  "url": "https://vector-relay.pages.dev/"
+ },
+ "Millennium Digest": {
+  "url": "https://juw12.github.io/millennium-digest/",
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text"
+ },
+ "Talos": {
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text"
+ },
+ "gate": {
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text"
+ },
+ "Buddy": {
+  "only": "android"
  }
 }

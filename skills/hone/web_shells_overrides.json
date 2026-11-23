@@ -177,5 +177,21 @@
   "url": "https://juw12.github.io/projects/e-coder/",
   "site": "agents-lab/E-coder/guide",
   "guide": "Juwen, 23 Nov 2026: 'continue do all till finish'. It had no page of its own, so guide_page.py made one (the guide/ folder, copied to the monorepo's site by the 'guides' list in scripts/apps.json): the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "Datum CAD": {
+  "url": "https://juw12.github.io/projects/datum-cad/",
+  "site": "apps/me-rd-toolkit/photo2cad/guide",
+  "guide": "Juwen, 23 Nov 2026: 'sure make it' (asked whether the three workplace tools stay out of the gate or get public pages and apps). Its guide (guide_page.py, the guide/ folder, on the monorepo's site through the 'guides' list in scripts/apps.json) is the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "PLM AML Approval": {
+  "url": "https://juw12.github.io/projects/plm-aml-approval/",
+  "site": "apps/plm-aml-approval/guide",
+  "guide": "Juwen, 23 Nov 2026: 'sure make it' (asked whether the three workplace tools stay out of the gate or get public pages and apps). Its guide (guide_page.py, the guide/ folder, on the monorepo's site through the 'guides' list in scripts/apps.json) is the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer."
+ },
+ "Outlook Archiver": {
+  "url": "https://juw12.github.io/projects/outlook-archiver/",
+  "site": "apps/outlook-archiver/guide",
+  "guide": "Juwen, 23 Nov 2026: 'sure make it' (asked whether the three workplace tools stay out of the gate or get public pages and apps). Its guide (guide_page.py, the guide/ folder, on the monorepo's site through the 'guides' list in scripts/apps.json) is the README laid out for a phone. Its README says the apps open that guide and that the program itself runs on a computer.",
+  "tagline": "A small Windows daemon that archives every Outlook message"
  }
 }

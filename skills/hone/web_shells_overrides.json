@@ -86,11 +86,11 @@
   "site": "app",
   "url": "https://kas-keluarga-7bo.pages.dev/",
   "tagline": "Family income, expenses and obligations in one ledger",
-  "private_ok": "Juwen, 23 Nov 2026: 'if mac hasnt done this then u go'. A private repo: runner minutes are paid (42 of 2000 used in Nov), and only accounts with access to the repo can download its releases."
+  "skip": "Juwen, 23 Nov 2026: 'just web app, if cannot then pending'. Only the web app (iPhone and Android add it to the home screen; Windows and Mac open it in the browser). Windows, Mac and Android builds are pending: they need the juw12 account (workflows, signing secret), Face ID and fingerprint would not work in their windows, and a private repo's releases download only for Juwen."
  },
  "Gajian": {
   "site": "app",
   "url": "https://gajian-olv.pages.dev/",
-  "private_ok": "Juwen, 23 Nov 2026: 'if mac hasnt done this then u go'. A private repo: runner minutes are paid (42 of 2000 used in Nov), and only accounts with access to the repo can download its releases."
+  "skip": "Juwen, 23 Nov 2026: 'just web app, if cannot then pending'. Only the web app (iPhone and Android add it to the home screen; Windows and Mac open it in the browser). Windows, Mac and Android builds are pending: they need the juw12 account (workflows, signing secret), Face ID and fingerprint would not work in their windows, and a private repo's releases download only for Juwen."
  }
 }

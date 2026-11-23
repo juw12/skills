@@ -13,7 +13,8 @@ A project is left alone when web_shells_overrides.json (next to this file) gives
 a window around a page is a version only where the page does the project's job (ship.md). Other keys there:
 "only" ("android" or "mac": the project has the rest), "put" (the folder for desktop/ and android/ when the
 project already has a desktop/ of its own), "url", "site", "name", "tagline", "title_has", "started",
-"started_says", "mac_note", "private_ok" (the reason a private repo is made anyway).
+"started_says", "mac_note", "private_ok" (the reason a private repo is made anyway), "readme": "generated" (the project's own
+build writes its README: leave it alone, that build names the downloads).
 
 Everything it needs it fetches into a work folder (FOUR_WORK, default ~/four-versions-work): the projects,
 Jeda and Cairn (the two shells), and the private juw12/web-shells-signing (the Android key). After `apply`:
@@ -276,7 +277,7 @@ def plan(row: dict, extra: dict) -> dict:
             "cert": (fetch("web-shells-signing", KEY) / "shells-release-cert-sha256.txt").read_text().strip().replace(":", "").lower(),
             "signing": "juw12/web-shells-signing",
         },
-        "icon_px": best, "mac_note": extra.get("mac_note", ""),
+        "icon_px": best, "mac_note": extra.get("mac_note", ""), "readme": extra.get("readme", ""),
     }
     (HERE / "plans").mkdir(exist_ok=True)
     (HERE / "plans" / (slug + ".json")).write_text(json.dumps(result, indent=1, ensure_ascii=False), encoding="utf-8")
@@ -386,7 +387,9 @@ def apply(planned: dict) -> str:
     if planned["icon_px"] < 512 and planned["only"] != "android":  # the desktop build draws its icons from a 512 px picture
         target_icon = shells / "desktop" / "icon-512.png"
         square(target_icon, 512)
-    note = edit_readme(planned)
+    # A README its own build rewrites (Bits & Tickers' site) is left alone: a section added here would clash
+    # with that build's next publish. The build names the downloads once desktop/ and android/ are there.
+    note = "README left to the project's own build" if planned.get("readme") == "generated" else edit_readme(planned)
     repo = planned["repo"]
     if planned["only"] != "mac":
         password = (KEY / "shells-release-password.txt").read_text().strip()

@@ -211,5 +211,13 @@
   "tagline": "Console for the AIRIZ rig: remote control by code, camera and device checks",
   "mac_note": "It cannot reach the AIRIZ over USB itself (the Mac's WebKit has no Web Serial or WebUSB): use it with Remote by code or the demo device, or open the page in Chrome on the Mac for a direct connection. ",
   "made_anyway": "Juwen, 23 Nov 2026: 'continue for without ones till done'. A Mac build of the Electron console would need the device to test against; the Mac version is the web console in its own window (apps/airiz-motor/desktop is the Windows Electron app, so the window goes in shell/)."
+ },
+ "Bits & Tickers": {
+  "url": "https://juw12.github.io/bits-and-tickers/",
+  "site": "",
+  "readme": "generated",
+  "started": "!!(document.body && document.querySelector('h1') && document.body.innerText.trim().length > 200)",
+  "started_says": "the page with its heading and its text",
+  "note": "The site repository is written by the podcast's build on the ASUS (bits-and-tickers-studio), which rebases and never forces. Stamp only after a publish has put manifest.webmanifest and the icons in the site (studio PR 30, 31). Its README is the build's: studio PR 32 makes the build add the Get it on your device section once desktop/ and android/ are in the site, so apply must not edit it. The gate passes two publishes after the stamp."
  }
 }

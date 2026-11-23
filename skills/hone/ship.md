@@ -87,6 +87,14 @@ the two, not a matter of opinion.
   write the README's *Get it on your device* section, set the signing secrets and open the pull request.
   It works on Windows and on a Mac. `web_shells_overrides.json` holds what a person decided about a
   project: left alone and why, only Android, only a Mac window, another folder, another name.
+- A project with no page of its own (a tool run from a terminal, a server a person hosts): the user said on
+  23 Nov 2026 to give these versions too. `guide_page.py` makes its guide (the README as GitHub renders it,
+  laid out for a phone, with manifest, icons and an offline worker) in `docs/` (Pages: main, /docs); in the
+  monorepo in `<app>/guide/`, listed under `guides` in `scripts/apps.json`. `home_screen.py` adds the manifest
+  and icons to a page that is already there. The pull request with the page is merged before `web_shells.py
+  apply` (which starts from main), and the README then says that the apps open the guide and that the program
+  itself runs on a computer. A page whose script has a global `keys` or `value` cannot be read by the desktop
+  window's check (pywebview declares both): rename it in the page.
 - A window around a web page is a version only where the page does the project's job. Not where the page is
   a demo of a program that runs on a PC, and not where the job needs something the window lacks (folder
   access, the microphone on Android): say so and leave that version missing.

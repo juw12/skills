@@ -13,7 +13,7 @@ A project is left alone when web_shells_overrides.json (next to this file) gives
 a window around a page is a version only where the page does the project's job (ship.md). Other keys there:
 "only" ("android" or "mac": the project has the rest), "put" (the folder for desktop/ and android/ when the
 project already has a desktop/ of its own), "url", "site", "name", "tagline", "title_has", "started",
-"started_says", "mac_note".
+"started_says", "mac_note", "private_ok" (the reason a private repo is made anyway).
 
 Everything it needs it fetches into a work folder (FOUR_WORK, default ~/four-versions-work): the projects,
 Jeda and Cairn (the two shells), and the private juw12/web-shells-signing (the Android key). After `apply`:
@@ -254,7 +254,9 @@ def plan(row: dict, extra: dict) -> dict:
         if (folder / prefix / there).exists() if prefix else (folder / there).exists():
             problems.append("%s%s/ is already there" % (prefix, there))
     visibility = run(GH, "api", "repos/%s" % slug_repo, "--jq", ".visibility", check=False)
-    if visibility != "public":
+    # "private_ok" in the overrides: Juwen said yes to a private repo, where runner minutes are paid and only
+    # accounts with access to the repo can download its releases.
+    if visibility != "public" and not extra.get("private_ok"):
         problems.append("the repo is %s (runner minutes are paid there)" % (visibility or "unknown"))
     result = {
         "key": row["name"].lower(), "repo": slug_repo, "path": path, "put": put, "only": only, "checkout": str(folder), "site": site, "page": page,

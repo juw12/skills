@@ -100,6 +100,10 @@ the two, not a matter of opinion.
   Lingua's page has paste and picture modes. Both shells pass file choices and downloads through. Stamp it and
   let the README say what does not work in that window. A project whose phone version is a private copy each
   person hosts (Social Saver) gets a small home-screen page that remembers that copy's address and opens it.
+- When the Android check loses the emulator (adb stops answering, then "could not connect to TCP port 5554"),
+  the emulator died, not the app: a page that draws a lot (PocketDex's 3D meadow) can take
+  `-gpu swiftshader_indirect` down. Change that workflow's emulator-options to `-gpu swangle_indirect`, with
+  `ram-size: 4096M` and `cores: 4`.
 - A window around a web page is a version only where the page does the project's job. Not where the page is
   a demo of a program that runs on a PC, and not where the job needs something the window lacks (folder
   access, the microphone on Android): say so and leave that version missing.

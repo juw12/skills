@@ -81,5 +81,16 @@
  },
  "Buddy": {
   "only": "android"
+ },
+ "Kas Keluarga": {
+  "site": "app",
+  "url": "https://kas-keluarga-7bo.pages.dev/",
+  "tagline": "Family income, expenses and obligations in one ledger",
+  "private_ok": "Juwen, 23 Nov 2026: 'if mac hasnt done this then u go'. A private repo: runner minutes are paid (42 of 2000 used in Nov), and only accounts with access to the repo can download its releases."
+ },
+ "Gajian": {
+  "site": "app",
+  "url": "https://gajian-olv.pages.dev/",
+  "private_ok": "Juwen, 23 Nov 2026: 'if mac hasnt done this then u go'. A private repo: runner minutes are paid (42 of 2000 used in Nov), and only accounts with access to the repo can download its releases."
  }
 }

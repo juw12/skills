@@ -92,5 +92,9 @@
   "site": "app",
   "url": "https://gajian-olv.pages.dev/",
   "skip": "Juwen, 23 Nov 2026: 'just web app, if cannot then pending'. Only the web app (iPhone and Android add it to the home screen; Windows and Mac open it in the browser). Windows, Mac and Android builds are pending: they need the juw12 account (workflows, signing secret), Face ID and fingerprint would not work in their windows, and a private repo's releases download only for Juwen."
+ },
+ "Peers": {
+  "put": "apps/peers/shell",
+  "note": "stamped twice on one branch on 23 Nov 2026: first with only=mac, then with only=android (Peers has its own Windows app in apps/peers/desktop)"
  }
 }

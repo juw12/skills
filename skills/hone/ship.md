@@ -95,6 +95,11 @@ the two, not a matter of opinion.
   apply` (which starts from main), and the README then says that the apps open the guide and that the program
   itself runs on a computer. A page whose script has a global `keys` or `value` cannot be read by the desktop
   window's check (pywebview declares both): rename it in the page.
+- Before leaving a version out because "a window cannot do it", read the page: Sortie loads demo data and
+  previews folders where there is no folder access, Jepret has a plain photo picker next to its folder picker,
+  Lingua's page has paste and picture modes. Both shells pass file choices and downloads through. Stamp it and
+  let the README say what does not work in that window. A project whose phone version is a private copy each
+  person hosts (Social Saver) gets a small home-screen page that remembers that copy's address and opens it.
 - A window around a web page is a version only where the page does the project's job. Not where the page is
   a demo of a program that runs on a PC, and not where the job needs something the window lacks (folder
   access, the microphone on Android): say so and leave that version missing.

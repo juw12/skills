@@ -7,7 +7,6 @@ description: Improve-until-done with full autonomy. The agent owns the task like
 
 Read order: `mandate.md` (how to behave; it wins every conflict), then this file (the loop and limits),
 then `ship.md` when the artifact is one of the user's projects (where it is published, and as whom).
-Successor of `refine-loop`: same loop, plus the autonomy mandate and the run queue.
 
 ## Safety boundary
 
@@ -63,13 +62,14 @@ stop("max_rounds")                          # stop(reason) logs "stop: <reason>"
 
 ## Shipping a project
 
-All of it is in `ship.md`; three parts are code, not judgement:
+All of it is in `ship.md`; the code parts:
 
 - `python platforms.py --repo juw12/<repo>`: every project has a Windows and a Mac download, an Android
   APK and an iPhone home-screen web app, and Cairn's repo page shows the same four. A missing one is a
   queue item.
-
 - `python findable.py --repo juw12/<repo>`: search engines can find it. A gap is a queue item.
+- `python security/secure.py audit --dir <clone>` before the push (`security/README.md`): a failing
+  gate is a queue item.
 - `python push_as.py check --dir <clone>` before a push: the account is the one the user picked in Cairn
   (read it, never switch it) and the repo is under `juw12` unless the request names another owner.
 - `python featured.py <profile README> --write` arranges the profile's Featured cards by evidence and
@@ -109,7 +109,7 @@ judged by <model council | subagent | self>`. Never claim "perfect" or "10/10".
 ## Self-check
 
 `python check_skill.py SKILL.md` (this file's gates); `--selftest` on
-`push_as.py`, `featured.py`, `platforms.py` and `findable.py`.
+`push_as.py`, `featured.py`, `platforms.py`, `findable.py`, `security/secure.py`, `security/harden.py`.
 
 ## Anti-patterns
 

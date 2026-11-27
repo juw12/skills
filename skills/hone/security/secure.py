@@ -231,6 +231,15 @@ def classify_secret(rule: str, secret: str, path: str) -> tuple[str, str]:
     return "high", note
 
 
+def secret_whereabouts(path_at_head: bool, head_blob: bytes | None, secret: str) -> str:
+    """Where a leaked value is now. A file that still exists at HEAD may no longer hold the value."""
+    if not path_at_head:
+        return "history only (file gone or renamed)"
+    if head_blob is not None and secret and secret.encode() not in head_blob:
+        return "history only (the file at HEAD no longer has the value)"
+    return "still at HEAD"
+
+
 def scan_secrets(repo: Path, head_paths: set[str]) -> list[dict]:
     binary = find_gitleaks()
     if not binary:
@@ -253,16 +262,21 @@ def scan_secrets(repo: Path, head_paths: set[str]) -> list[dict]:
                               f"gitleaks ended with code {result.returncode} and errors: the secret scan may be incomplete",
                               "run the scan for this repo again on its own and compare the counts")]
     grouped: dict[tuple, dict] = {}
+    ref = resolve_head(repo)
+    head_blobs: dict[str, bytes | None] = {}
     for leak in leaks:
         secret = leak.get("Secret", "")
         digest = hashlib.sha256(secret.encode()).hexdigest()[:10]
         path = leak.get("File", "")
         key = (leak.get("RuleID"), digest, path)
         severity, note = classify_secret(leak.get("RuleID", ""), secret, path)
-        at_head = path in head_paths
+        if path in head_paths and path not in head_blobs and ref:
+            code, blob = git(repo, "show", f"{ref}:{path}", binary=True)
+            head_blobs[path] = blob if code == 0 else None
+        where = secret_whereabouts(path in head_paths, head_blobs.get(path), secret)
         entry = grouped.setdefault(key, {
             "severity": severity, "note": note, "line": leak.get("StartLine", 0), "commits": 0,
-            "first": leak.get("Date", ""), "last": leak.get("Date", ""), "at_head": at_head,
+            "first": leak.get("Date", ""), "last": leak.get("Date", ""), "where": where,
             "length": len(secret), "commit": leak.get("Commit", "")[:10],
         })
         entry["commits"] += 1
@@ -270,7 +284,7 @@ def scan_secrets(repo: Path, head_paths: set[str]) -> list[dict]:
         entry["last"] = max(entry["last"], leak.get("Date", ""))
     findings = []
     for (rule, digest, path), entry in grouped.items():
-        where = "still at HEAD" if entry["at_head"] else "history only (file gone or renamed)"
+        where = entry["where"]
         message = (f"{rule}: {entry['length']}-char value #{digest}, {where}, {entry['commits']} commit(s), "
                    f"last {entry['last'][:10]} ({entry['commit']}) {entry['note']}").strip()
         findings.append(finding(f"S1:{rule}", entry["severity"], path, entry["line"], message,
@@ -805,6 +819,10 @@ def selftest() -> int:
         "jwt anon is info": classify_secret("jwt", f"x.{anon}.y", "app.js")[0] == "info",
         "jwt service_role is critical": classify_secret("jwt", f"x.{service}.y", "app.js")[0] == "critical",
         "requirements parser": packages == [("PyPI", "requests", "2.19.0")],
+        "secret: value removed at HEAD reads as history only": (
+            secret_whereabouts(True, b'token = ""\n', "abc123") == "history only (the file at HEAD no longer has the value)"
+            and secret_whereabouts(True, b'token = "abc123"\n', "abc123") == "still at HEAD"
+            and secret_whereabouts(False, None, "abc123") == "history only (file gone or renamed)"),
         "risky file": len(scan_risky_files([(".env", "0", 10), (".env.example", "0", 10), ("a/key.pem", "0", 5)], False)) == 2,
     }
     results.update(selftest_head())

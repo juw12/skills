@@ -9,3 +9,9 @@ skills/project-landing/state/readmes/
 skills/design/workspace/
 skills/design/out/
 skills/design/state/
+# hone security gate: each user's own allow list, caches, downloaded gitleaks, run history
+skills/hone/security/allow.json
+skills/hone/security/pins.json
+skills/hone/security/.osv_cache.json
+skills/hone/security/bin/
+skills/hone/security/history/

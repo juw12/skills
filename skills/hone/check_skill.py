@@ -28,6 +28,7 @@ GATES = {
     "Featured arranged from evidence": r"featured\.py",
     "four versions gate (Windows, Mac, iPhone, Android)": r"platforms\.py[^\n]*\n[^\n]*(?i:iphone)",
     "findable gate (search engines can find it)": r"findable\.py[^\n]*search engines",
+    "security gate (secure.py audit before the push)": r"security/secure\.py audit[^\n]*before the push",
 }
 
 MAX_WORDS = 1000

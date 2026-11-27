@@ -28,7 +28,7 @@ An attacking agent is cheap, patient and reads everything. It does not need a cl
 | `S audit --dir <checkout>` `[--private]` | every check below on one repo, whole history; exit 1 on critical/high | read access |
 | `S audit --mirrors <dir> --inventory repos.json --out <dir>` | the same for every bare mirror (`/honeall`) | read access |
 | `S settings --repo <name>` / `--all` `[--apply]` | reads, and with `--apply` turns on, the repo settings of gate G5 | **admin** on the repo |
-| `S --selftest` | 14 offline checks of the scanner itself | nothing |
+| `S --selftest` | 15 offline checks of the scanner itself | nothing |
 | `python security/harden.py --dir <clone>` `[--apply]` | fixes `W5` (pins each third-party action to the commit its tag points at, tag kept as a comment), `W3` (adds `permissions: contents: read`, only where no job without its own block writes back) and `H2` (`.github/dependabot.yml` for the pins: Actions only, monthly, one grouped PR). Refuses an edit that changes anything else. | a clone; `--selftest` offline |
 
 Needs Python 3.10 or newer and PyYAML (`pip install pyyaml`); without PyYAML both tools stop with that line

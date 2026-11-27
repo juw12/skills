@@ -836,6 +836,11 @@ def main() -> int:
     parser.add_argument("--resume", action="store_true", help="with --mirrors: keep repos already in findings.json")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args()
+    try:
+        import yaml  # noqa: F401  (the workflow checks parse YAML)
+    except ImportError:
+        print("PyYAML is missing, so no workflow can be read: pip install pyyaml")
+        return 2
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
     if args.selftest:

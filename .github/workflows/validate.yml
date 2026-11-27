@@ -16,5 +16,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: PyYAML for the hone security selftests
+        run: python -m pip install --disable-pip-version-check pyyaml==6.0.3
       - name: Front matter, refine-loop self-check, shared-script drift, compile
         run: python scripts/validate_skills.py

@@ -222,6 +222,11 @@ def main() -> int:
     parser.add_argument("--apply", action="store_true")
     parser.add_argument("--selftest", action="store_true")
     arguments = parser.parse_args()
+    try:
+        import yaml  # noqa: F401  (the workflow checks parse YAML)
+    except ImportError:
+        print("PyYAML is missing, so no workflow can be read: pip install pyyaml")
+        return 2
     if arguments.selftest:
         return selftest()
     report = harden(Path(arguments.dir).resolve(), arguments.apply)

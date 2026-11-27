@@ -31,7 +31,8 @@ An attacking agent is cheap, patient and reads everything. It does not need a cl
 | `S --selftest` | 14 offline checks of the scanner itself | nothing |
 | `python security/harden.py --dir <clone>` `[--apply]` | fixes `W5` (pins each third-party action to the commit its tag points at, tag kept as a comment), `W3` (adds `permissions: contents: read`, only where no job without its own block writes back) and `H2` (`.github/dependabot.yml` for the pins: Actions only, monthly, one grouped PR). Refuses an edit that changes anything else. | a clone; `--selftest` offline |
 
-gitleaks (free, MIT) does the history scan: on PATH, or `security/bin/gitleaks.exe`. Without it the audit
+Needs Python 3.10 or newer and PyYAML (`pip install pyyaml`); without PyYAML both tools stop with that line
+instead of skipping the workflow checks. gitleaks (free, MIT) does the history scan: on PATH, or `security/bin/gitleaks.exe`. Without it the audit
 says so (`S0`) instead of passing silently. Secret values are never printed or stored: a finding carries the
 rule, the file, the length and a 10-character hash.
 
